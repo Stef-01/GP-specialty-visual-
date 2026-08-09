@@ -1,0 +1,134 @@
+# Plan — “Care Personas”: a standalone two-explainer product
+
+**Product root:** this repository — plain HTML/CSS/JS, no build step, hostable on any static
+host, independent of the portfolio app.
+**Design brief:** read as a *direct continuation* of Surgo Ventures' vaccine-persona explainer —
+geometric sans (Poppins/Inter), deep-navy color-blocking, bright persona hues, flat illustrated
+avatars, a segmented population bar as the centrepiece, pill buttons, marker-highlight accents,
+light-only.
+**Shared assets:** `assets/style.css` (design system) · `assets/site.js` (reveal, tooltips,
+scroll-to-persona).
+
+---
+
+## The shared method (both explainers, and the hub's framing)
+
+1. **Segment** — replace the “average patient” with 5 named personas, sized as shares of a real
+   book or population (full-width segmented bar, one validated colour per persona).
+2. **Match** — assign each persona the clinician tier or relationship it actually needs.
+3. **Align the money** — indicative dollars showing every stakeholder earns more.
+4. **Ask small** — end with one fundable trial and hard KPIs.
+
+## Explainer 01 — The Specialist-GP Pipeline (`specialist-gp-pipeline.html`)
+
+**Argument:** the bottom quintile (~20%) of a specialist's caseload is mispriced work for a
+specialist and premium work for an accredited GP. A **Complexity Screen** (stability · devices ·
+comorbidity · admissions · titration · red flags → 0–100) routes it to **Specialist-GPs** with an
+eConsult backstop (≤72 h routine / 24 h urgent, $65/episode, 85–90% resolved without transfer,
+≤15%/yr escalation).
+
+**Personas (share of 2,000 appts/yr per cardiology FTE):** The Steady State 12% · The Protocol
+Titration 8% *(both → pipeline = 400 appts ≈ 130 patients)* · The Multimorbid Juggler 35% ·
+The Diagnostic Puzzle 20% · The High-Stakes 25% *(specialist core)*.
+
+**Key indicative economics (AUD, MBS-rounded):**
+- GP: $86 → **$535/patient/yr** (2×C $83 + D $122 + GPMP $165 + review $82) = **+$449**;
+  30–40 patients → **+$13–18k/yr per GP**.
+- Specialist: 400 freed slots $36.8k → **$71.8k** (240 new complex × $170 + 160 reviews × $92 +
+  250 eConsults × $65) = **+$35k/FTE/yr**, plus ≈ $200k/yr downstream diagnostics to the dept.
+- Network (6 FTE): $384k/yr setting-shift ($290→$130/visit × 2,400) + $312k/yr avoided ED &
+  admissions = **$696k/yr**; wait 127 → 55 days (−57%).
+- Honest ledger: network payback ≈ 8 months on a $460k trial; Medicare pays ≈ +$560k/yr and buys
+  1,440 extra complex assessments — throughput, not fee inflation.
+
+**Trial:** 12 months, one 6-FTE department, ~24 accredited GPs, $460k; 8 KPIs incl. wait ≤75
+days, eConsult resolution ≥85%, escalation ≤15%, no ED-representation increase, GP +8% /
+specialist +9% billings, PREM ≥85%. Six risk→safeguard pairs close the page.
+
+## Explainer 02 — The Matched Family GP (`matched-family-gp.html`)
+
+**Argument:** patients disengage because the front door doesn't fit. Match them — in a
+**20-second preference conversation** — against **clinician profiles built by onboarding
+interviews** (“which patients do you want more of?”), then keep them with an **outbound engine**:
+proactive slot offers (“reply YES to book”) and EHR-predicted cadences (post-MI q3mo year 1,
+T2DM 3–6mo, mental-health plan reviews, postnatal, CKD). Revives the family-GP model; lets GPs
+specialise in the medicine they love; a demand-triggered $15–25 out-of-pocket premium once a
+diary runs >95% full (non-concession only).
+
+**Personas (share of the ~40% loosely attached):** The Mirror Seeker 18% · The Table Matcher 14%
+· The No-Judgement Seeker 24% · The Data Devotee 12% · The Continuity Craver 32%.
+
+**Key indicative economics:** 560 lost appts/GP FTE/yr (≈$36k) → ~340 refilled (+$22k) +
+re-engaged care plans (+$9k) ≈ **+$30k/FTE/yr**; visits 1.7 → 2.9/yr matched; retention 48% →
+81%; no-shows 8% → <3%; chronic follow-up completion 52% → 78%; GP preferred-scope share 25% →
+55%.
+
+**Interactives:** the 20-second match demo (5 preference chips re-rank 6 fictional clinician
+cards with “why this match” highlights) · phone mock of three outbound messages · post-MI cadence
+timeline. **Pilot:** 6 months, 3 practices, 30 GPs, $380k, 7 KPIs (incl. opt-out ≤10%).
+**Guardrails:** matching never gatekeeps; clinical governance owns cadences; consent-only data;
+bulk-billing floor; quarterly bias audits; the engine never triages emergencies.
+
+## Hub (`index.html`)
+
+Brand mark (5 persona dots), headline, the shared method, two hub cards with mini segmented bars.
+
+## Design system & validation
+
+- Persona colours = validated categorical slots 1–5 (blue `#2a78d6`, orange `#eb6834`, aqua
+  `#1baf7a`, yellow `#eda100`, magenta `#e87ba4`): all CVD checks pass on the light surface
+  (worst adjacent ΔE 9.1); sub-3:1 hues (aqua/yellow/magenta) relieved with in-segment labels,
+  chips and table views under every chart.
+- Clinician tiers = blue ordinal ramp (GP `#86b6ef` / specialist `#1c5cab`).
+- Comparison bars: Today `#8a93a8` vs proposed `#2a78d6`, legend on every pair, direct end labels,
+  24px/20px marks, 2px surface gaps, 4px rounded data-ends, `tabular-nums` in tables only.
+- Light-only by deliberate brand commitment (matches the reference site); `color-scheme: light`,
+  explicit backgrounds throughout.
+- Accessibility: keyboard-focusable segments with tooltips on focus, `<details>` table twins,
+  `prefers-reduced-motion` respected, skip links, aria labels on charts and the diagram.
+
+## The dot-field theatre (animation-first layer)
+
+Both explainers open with a **scroll-driven unit-dot theatre** (`assets/dotfield.js`, ~9 KB, no
+libraries): 200 procedurally placed dots (each dot = 10 appointments / 1 patient) that morph
+through choreographed scenes as the reader scrolls — cloud → complexity/preference **scan sweep**
+(dots take persona colours) → **amalgamation** into 5 circle-packed clusters → amalgamation into
+the segmented bar → **camera zoom in** on the target segment → zoom out into the split/match/
+outbound choreography → stat count-ups. All layouts are procedural (phyllotaxis packing, seeded
+PRNG so they're stable across resizes); the camera is a projective transform interpolated per
+scene; every beat is **fully user-paced** — nothing moves unless the reader scrolls.
+
+Research basis: the original Surgo explainer is confirmed (designer/developer portfolio + on-page
+captions) to be a Scrollama + D3 **animated-circle unit visualization** whose circles re-sort from
+demographic groups into the 5 persona segments on scroll, with 24–41-word captions, 5 persona
+hues, ~3 element groups per scene, and hover only in the finale — this theatre reproduces that
+grammar for the care-model domain.
+
+### The clutter budget (numeric, enforced in code and audited)
+
+| Metric | Budget (source) | This build |
+|---|---|---|
+| Focus text per scene | ≤ 30 words (Flourish/ONA one-idea-per-step; Surgo measured 24–41) | 10–16 words, one block; windows sized so two captions never co-exist |
+| Active hues per scene | 1 accent + gray context; ≤ 7 ceiling (Datawrapper); 5 persona hues when the segmentation IS the story (Surgo) | neutral-gray scenes until the scan; then the 5 validated persona hues + 1 accent |
+| Concurrent choreographies | 1 (Heer & Robertson staged transitions) | one morph at a time; extras animate only while dots hold |
+| Non-data elements on stage | ≤ 5–6 labels + caption, zero chrome | ≤ 5 persona labels + 1 caption; no gridlines/borders/axes on stage |
+| Dwell : travel | ≥ 2:1 of scroll distance | 67 : 33 per scene |
+| Idle motion at rest | zero autonomous/looping motion (WCAG 2.2.2) | scroll-driven only; single 0.9 s one-shot count-up |
+| Reduced motion | static states / crossfades (WCAG 2.3.3, C39) | single static composed frame + instant stat values |
+| Text position | one fixed slot, 0 layout jumps (Bostock/Pudding) | fixed bottom-left slot every scene |
+| Camera moves per story | ≤ 1 per scene, ~3–5 per story | 2 per story (zoom in, zoom out) |
+
+Micro-animation elsewhere stays inside the same budget: comparison bars grow once on reveal,
+sections fade up once; nothing loops.
+
+## Hosting
+
+Deploy the repo root as a static site (Vercel/Netlify/GitHub Pages). Only external
+dependency: Google Fonts. Canonical home: https://github.com/Stef-01/GP-specialty-visual-
+(product at repo root); the Portfolio repo carries a mirror under `care-personas/`.
+
+## Roadmap (v2)
+
+Specialty switcher and scenario sliders recomputing the ledgers live · real MBS item lookups ·
+per-1M-population state scaling · printable one-page executive summaries · a "which persona are
+you?" patient-facing quiz for Explainer 02.
