@@ -7,27 +7,22 @@ product's canonical home — a standalone static site, no build step, no framewo
 | Page | What it argues | Audience |
 |---|---|---|
 | `index.html` | Product hub — the shared method | Everyone |
-| `specialist-gp-pipeline.html` | **Explainer 01 — The Specialist-GP Pipeline.** Two patient pools, side by side: a GP's book and a cardiologist's referred pool. A complexity screen sorts the specialist pool; its bottom 20% crosses into the GP pool with an eConsult guidance line back. GPs bill more, specialists bill more, the waitlist halves. | Hospital networks, the CMO |
-| `matched-family-gp.html` | **Explainer 02 — The Matched Family GP.** Patients matched in a 20-second conversation to doctors who asked for exactly them (culture, food, judgement-free care, wearables, whole-family), then kept by an outbound follow-up engine driven by EHR-predicted need. | Primary-care networks, payers |
-| `executive-summary.html` | **One-pager.** Both concepts, their economics and both asks on a single sheet — prints to exactly one A4 page. | The room |
+| `specialist-gp-pipeline.html` | **Explainer 01:** screen every referral for complexity; move the bottom 20% of the specialist caseload to accredited GPs with an eConsult backstop. GPs bill more, specialists bill more, waitlists halve. | Hospital networks, CMO |
+| `matched-family-gp.html` | **Explainer 02:** match patients to doctors who fit them (culture, food, judgement-free care, wearables, whole-family) via a 20-second conversation, then run outbound follow-up on EHR-predicted need. | Primary-care networks, payers |
+| `executive-summary.html` | **One-pager:** both concepts, their economics and both asks on a single sheet — prints to exactly one A4 page. | The room |
 
-## The animation layer
+Only external dependency: Google Fonts.
 
-Each explainer opens with a scroll-triggered **person-figure theatre** (`assets/dotfield.js`,
-zero libraries): 200 procedurally drawn people — varied skin and hair, faces that resolve when the
-camera zooms close — who take persona colours under a scan sweep, form ranked queues and clusters,
-and play out each story's choreography before settling into stat count-ups. **Scroll selects the
-scene; crossing a step threshold fires a timed, eased tween (≤1.4 s) that always completes** —
-parking the page anywhere settles on a composed scene, never a mid-transition frame (the
-interaction model of the reference explainer; adopted after the ten-stage RCA in
-`docs/rca-animation-postmortem.md`). Labels are bound to their group's live centroid, so
-annotations travel with their people.
-
-It is held to a **numeric clutter budget** derived from the original explainer (Scrollama + D3
-animated circles; 24–41-word captions; 5 hues; ~3 element groups per scene) and published
-scrollytelling research — one caption at a time, only composed scenes may persist on screen,
-≤ 2 camera moves per story, zero idle motion after settle, `prefers-reduced-motion` gets static
-composed frames. Full budget table and data model: `docs/plan.md`.
+**Animation-first:** each explainer opens with a scroll-triggered unit-person theatre
+(`assets/dotfield.js`, no libraries) — 200 procedurally drawn people take their persona colours
+under a scan sweep, form ranked queues and clusters, and play out the story's choreography while
+the camera zooms in and out. **Each story starts with one person**: the camera locks onto a single
+figure, their needs appear as plain-language lines on a card, and the argument widens from there
+to the whole population (Explainer 02: 18 scenes; Explainer 01: 17). **Scroll selects the scene; crossing a step fires a timed tween
+that always completes** — parking the page anywhere settles on a composed scene, never a
+mid-transition frame (the interaction model of the reference explainer; see
+`docs/rca-animation-postmortem.md`). Honours `prefers-reduced-motion` with static composed
+frames, and is held to a numeric clutter budget documented in `docs/plan.md`.
 
 ## Testing
 
@@ -41,7 +36,7 @@ node tests/theatre-qa.mjs          # full matrix
 node tests/theatre-qa.mjs --quick  # widest viewport only
 ```
 
-Requires Node ≥ 18 with Playwright + Chromium available (a global install works —
+Requires a Node ≥ 18 with Playwright + Chromium available (a global install works —
 `createRequire` honours `NODE_PATH`).
 
 ## Hosting
@@ -50,13 +45,13 @@ Deploy the repo root to any static host:
 
 - **Vercel / Netlify:** import this repo, framework preset "Other", no build command.
 - **GitHub Pages:** Settings → Pages → deploy from `main` root.
+- **Anywhere else:** copy the files; open `index.html`.
 
-Only external dependency: Google Fonts.
+## Notes
 
-## Method notes
-
-All monetary values are indicative AUD rounded from published MBS schedule fees; all rates are
-illustrative modelling assumptions, stated openly — each explainer ends with the trial designed
-to measure them. The 5-colour persona palette is validated for colour-vision deficiency
-(adjacent-pair CVD ΔE ≥ 8, OKLab×100); sub-3:1-contrast hues are relieved with labels, legend
-chips and table views. All demo clinicians are fictional.
+- All monetary values are indicative AUD rounded from published MBS schedule fees; all rates are
+  illustrative modelling assumptions. Each explainer ends with the trial designed to measure them.
+- The 5-colour persona palette is validated for colour-vision deficiency (adjacent-pair CVD
+  ΔE ≥ 8, OKLab×100) on the light surface; sub-3:1-contrast hues are relieved with in-segment
+  labels, legend chips and table views. See `docs/plan.md`.
+- All demo clinicians are fictional.
