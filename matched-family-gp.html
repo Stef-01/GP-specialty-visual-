@@ -154,28 +154,28 @@
       reachable. None of them needs persuading. They need a match.</p>
 
       <div class="card" style="margin-top:28px">
-        <h3 style="font-size:15px;color:var(--ink-2);font-weight:600;font-family:var(--body)">The loosely attached patient population, segmented by what would bring them in the door. Hover or tap; click to meet the persona.</h3>
+        <h3 class="fighint">The loosely attached patient population, segmented by what would bring them in the door. Hover or tap; click to meet the persona.</h3>
         <div class="bigbar" role="group" aria-label="Loosely attached patients segmented by care-match persona">
-          <button class="seg" style="flex:18;background:var(--s1);color:var(--on-s1)" data-target="m1"
+          <button class="seg p1" style="flex:18" data-target="m1"
             data-tip="<b>The Mirror Seeker — 18%</b>Wants a doctor who shares their background,<br>language or lived experience"><span>18%</span></button>
-          <button class="seg" style="flex:14;background:var(--s2);color:var(--on-s2)" data-target="m2"
+          <button class="seg p2" style="flex:14" data-target="m2"
             data-tip="<b>The Table Matcher — 14%</b>Wants advice that fits their food culture<br>and dietary practice"><span>14%</span></button>
-          <button class="seg" style="flex:24;background:var(--s3);color:var(--on-s3)" data-target="m3"
+          <button class="seg p3" style="flex:24" data-target="m3"
             data-tip="<b>The No-Judgement Seeker — 24%</b>Avoids care fearing the lecture —<br>weight, sexual health, alcohol, mental health"><span>24%</span></button>
-          <button class="seg" style="flex:12;background:var(--s4);color:var(--on-s4)" data-target="m4"
+          <button class="seg p4" style="flex:12" data-target="m4"
             data-tip="<b>The Data Devotee — 12%</b>Wants wearable &amp; CGM data reviewed<br>seriously, not waved away"><span>12%</span></button>
-          <button class="seg" style="flex:32;background:var(--s5);color:var(--on-s5)" data-target="m5"
+          <button class="seg p5" style="flex:32" data-target="m5"
             data-tip="<b>The Continuity Craver — 32%</b>Wants one doctor who knows the whole family —<br>currently bouncing between walk-ins"><span>32%</span></button>
         </div>
         <div class="rails" aria-hidden="true">
-          <div class="rail" style="flex:100;border-color:var(--tier-gp)"><b>All five are bookable</b> — when the front door reflects them and the follow-up finds them</div>
+          <div class="rail t-gp" style="flex:100"><b>All five are bookable</b> — when the front door reflects them and the follow-up finds them</div>
         </div>
         <div class="chips" role="list" aria-label="Persona legend">
-          <button class="chip" data-target="m1" role="listitem"><span class="dot" style="background:var(--s1)"></span>The Mirror Seeker · 18%</button>
-          <button class="chip" data-target="m2" role="listitem"><span class="dot" style="background:var(--s2)"></span>The Table Matcher · 14%</button>
-          <button class="chip" data-target="m3" role="listitem"><span class="dot" style="background:var(--s3)"></span>The No-Judgement Seeker · 24%</button>
-          <button class="chip" data-target="m4" role="listitem"><span class="dot" style="background:var(--s4)"></span>The Data Devotee · 12%</button>
-          <button class="chip" data-target="m5" role="listitem"><span class="dot" style="background:var(--s5)"></span>The Continuity Craver · 32%</button>
+          <button class="chip" data-target="m1" role="listitem"><span class="dot p1"></span>The Mirror Seeker · 18%</button>
+          <button class="chip" data-target="m2" role="listitem"><span class="dot p2"></span>The Table Matcher · 14%</button>
+          <button class="chip" data-target="m3" role="listitem"><span class="dot p3"></span>The No-Judgement Seeker · 24%</button>
+          <button class="chip" data-target="m4" role="listitem"><span class="dot p4"></span>The Data Devotee · 12%</button>
+          <button class="chip" data-target="m5" role="listitem"><span class="dot p5"></span>The Continuity Craver · 32%</button>
         </div>
         <details>
           <summary>View the segmentation as a table</summary>
@@ -193,7 +193,7 @@
       </div>
 
       <div class="grid personas">
-        <article class="card pcard" id="m1" style="border-top-color:var(--s1)">
+        <article class="card pcard p1" id="m1">
           <div class="phead">
             <svg class="avatar av" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#e6effa"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#31456e"/><path d="M27 42 a21 21 0 0 1 42 0 v12 c0 9-9.5 13-21 13 s-21-4-21-13 Z" fill="#46608f"/><circle cx="48" cy="43" r="13" fill="#c68b59"/><circle cx="43" cy="44" r="1.8" fill="#201209"/><circle cx="53" cy="44" r="1.8" fill="#201209"/><path d="M44.5 50 q3.5 3 7 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
             <div><h3>The Mirror Seeker</h3><span class="share">18% of the loosely attached</span></div>
@@ -218,7 +218,7 @@
           visits rise from ~1.5 to ~2.8/yr (indicative) — prevention finally has a customer.</p>
         </article>
 
-        <article class="card pcard" id="m2" style="border-top-color:var(--s2)">
+        <article class="card pcard p2" id="m2">
           <div class="phead">
             <svg class="avatar av" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#fdeae2"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#274064"/><rect x="44" y="52" width="8" height="10" fill="#8c5a33"/><circle cx="48" cy="40" r="17" fill="#8c5a33"/><path d="M31 40 a17 17 0 0 1 34 0 h-6 a11 11 0 0 0 -22 0 Z" fill="#201209"/><path d="M31 40 a17 17 0 0 0 34 0 h-5 a12 12 0 0 1 -24 0 Z" fill="#201209"/><circle cx="42" cy="40" r="1.8" fill="#f5e9dc"/><circle cx="54" cy="40" r="1.8" fill="#f5e9dc"/></svg>
             <div><h3>The Table Matcher</h3><span class="share">14% of the loosely attached</span></div>
@@ -242,7 +242,7 @@
           metabolic follow-through instead of silent drop-out.</p>
         </article>
 
-        <article class="card pcard" id="m3" style="border-top-color:var(--s3)">
+        <article class="card pcard p3" id="m3">
           <div class="phead">
             <svg class="avatar av" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#e4f6ef"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#5d6f94"/><rect x="44" y="52" width="8" height="10" fill="#f2c9a0"/><circle cx="48" cy="40" r="17" fill="#f2c9a0"/><path d="M27 58 v-18 a21 21 0 0 1 42 0 v18 h-8 v-16 a13 13 0 0 0 -26 0 v16 Z" fill="#7a3b1e"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 47.5 q4.5 3.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
             <div><h3>The No-Judgement Seeker</h3><span class="share">24% of the loosely attached</span></div>
@@ -267,7 +267,7 @@
           month — earlier intervention on exactly the conditions that cost systems the most.</p>
         </article>
 
-        <article class="card pcard" id="m4" style="border-top-color:var(--s4)">
+        <article class="card pcard p4" id="m4">
           <div class="phead">
             <svg class="avatar av" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#fdf3da"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#3b527d"/><rect x="44" y="52" width="8" height="10" fill="#eeb98d"/><circle cx="48" cy="40" r="17" fill="#eeb98d"/><path d="M31 40 a17 17 0 0 1 34 0 h-6 a11 11 0 0 0 -22 0 Z" fill="#3a2a1c"/><circle cx="42" cy="41" r="5.5" fill="none" stroke="#16244a" stroke-width="1.6"/><circle cx="54" cy="41" r="5.5" fill="none" stroke="#16244a" stroke-width="1.6"/><path d="M47.5 41 h1" stroke="#16244a" stroke-width="1.6"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 48.5 q4.5 3.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
             <div><h3>The Data Devotee</h3><span class="share">12% of the loosely attached</span></div>
@@ -291,7 +291,7 @@
           arrhythmias and pressure creep caught between visits — not at the ED.</p>
         </article>
 
-        <article class="card pcard" id="m5" style="border-top-color:var(--s5)">
+        <article class="card pcard p5" id="m5">
           <div class="phead">
             <svg class="avatar av" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#fbe9f1"/><path d="M14 96 C14 74 26 63 42 63 C58 63 70 74 70 96 Z" fill="#4a5674"/><circle cx="42" cy="20" r="6" fill="#201209"/><circle cx="42" cy="38" r="15" fill="#c68b59"/><path d="M27 38 a15 15 0 0 1 30 0 h-5 a10 10 0 0 0 -20 0 Z" fill="#201209"/><circle cx="37" cy="39" r="1.7" fill="#201209"/><circle cx="47" cy="39" r="1.7" fill="#201209"/><path d="M38.5 45 q3.5 3 7 0" stroke="#201209" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M56 96 c0-12 7-18 16-18 s16 6 16 18 Z" fill="#5d6f94"/><circle cx="72" cy="68" r="10" fill="#d29a6b"/><path d="M62 68 a10 10 0 0 1 20 0 h-4 a6 6 0 0 0 -12 0 Z" fill="#3a2a1c"/><circle cx="69" cy="69" r="1.4" fill="#201209"/><circle cx="75" cy="69" r="1.4" fill="#201209"/><path d="M70 73 q2 1.8 4 0" stroke="#201209" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
             <div><h3>The Continuity Craver</h3><span class="share">32% of the loosely attached</span></div>
@@ -322,7 +322,7 @@
       is the only kind that gets followed after they leave the room.</p>
       <div class="grid g2" style="margin-top:14px">
         <div class="card">
-          <h3 style="color:#c8503f">The misaligned consult</h3>
+          <h3 class="bad">The misaligned consult</h3>
           <ul class="contrast">
             <li class="no">Explains the diagnosis over the patient's own theory of illness — so the two never reconcile, and hers wins at home</li>
             <li class="no">"Cut the rice" / "no fried food" — bans the cuisine instead of working inside it</li>
@@ -333,7 +333,7 @@
           <p class="note" style="margin-top:10px">Outcome: polite nodding, quiet non-adherence, and a patient who doesn't rebook.</p>
         </div>
         <div class="card">
-          <h3 style="color:var(--good)">The aligned consult</h3>
+          <h3 class="good">The aligned consult</h3>
           <ul class="contrast">
             <li class="yes">Starts by asking <b>what the patient believes is wrong</b> — then explains the diagnosis inside that frame, in their first language</li>
             <li class="yes">Prescribes <b>within</b> the food culture: swaps and portions for rice, roti or taro — never "abandon your table"</li>
@@ -369,11 +369,11 @@
         <h3>Try the 20-second match</h3>
         <p class="note" style="margin:2px 0 0">Illustrative demo — all clinicians fictional. Pick what matters to you; the shortlist re-ranks.</p>
         <div class="demo-chips" id="demoChips">
-          <button class="chip" data-key="mirror" aria-pressed="false"><span class="dot" style="background:var(--s1)"></span>Shares my background &amp; language</button>
-          <button class="chip" data-key="table" aria-pressed="false"><span class="dot" style="background:var(--s2)"></span>Gets my food culture</button>
-          <button class="chip" data-key="judge" aria-pressed="false"><span class="dot" style="background:var(--s3)"></span>Won't judge me</button>
-          <button class="chip" data-key="data" aria-pressed="false"><span class="dot" style="background:var(--s4)"></span>Takes my wearable data seriously</button>
-          <button class="chip" data-key="family" aria-pressed="false"><span class="dot" style="background:var(--s5)"></span>Can take my whole family</button>
+          <button class="chip" data-key="mirror" aria-pressed="false"><span class="dot p1"></span>Shares my background &amp; language</button>
+          <button class="chip" data-key="table" aria-pressed="false"><span class="dot p2"></span>Gets my food culture</button>
+          <button class="chip" data-key="judge" aria-pressed="false"><span class="dot p3"></span>Won't judge me</button>
+          <button class="chip" data-key="data" aria-pressed="false"><span class="dot p4"></span>Takes my wearable data seriously</button>
+          <button class="chip" data-key="family" aria-pressed="false"><span class="dot p5"></span>Can take my whole family</button>
         </div>
         <div class="grid docgrid" id="docGrid" aria-live="polite"></div>
       </div>
@@ -429,14 +429,14 @@
           <div class="tick" style="left:50%"></div><span class="tlab" style="left:50%">Mo 6</span>
           <div class="tick" style="left:75%"></div><span class="tlab" style="left:75%">Mo 9</span>
           <div class="tick" style="left:100%"></div><span class="tlab" style="left:100%">Mo 12</span>
-          <div class="visit" style="left:25%;background:var(--pipe)"></div><span class="vlab" style="left:25%">GP review</span>
-          <div class="visit" style="left:50%;background:var(--pipe)"></div>
-          <div class="visit" style="left:75%;background:var(--pipe)"></div>
-          <div class="visit" style="left:100%;background:var(--pipe)"></div><span class="vlab" style="left:100%">Year done</span>
+          <div class="visit v-pipe" style="left:25%"></div><span class="vlab" style="left:25%">GP review</span>
+          <div class="visit v-pipe" style="left:50%"></div>
+          <div class="visit v-pipe" style="left:75%"></div>
+          <div class="visit v-pipe" style="left:100%"></div><span class="vlab" style="left:100%">Year done</span>
         </div>
-        <div class="legend" style="margin-top:18px"><span class="key"><span class="sw" style="background:var(--today)"></span>Today — inbound only</span><span class="key"><span class="sw" style="background:var(--pipe)"></span>With the outbound engine</span></div>
-        <div class="brow"><span class="blab">Today</span><div class="btrack"><div class="bfill" style="width:43%;background:var(--today)"></div><span class="bval">1.6 of 4 reviews happen</span></div></div>
-        <div class="brow"><span class="blab">Engine</span><div class="btrack"><div class="bfill" style="width:100%;background:var(--pipe)"></div><span class="bval">3.7 of 4 (indicative)</span></div></div>
+        <div class="legend" style="margin-top:18px"><span class="key"><span class="sw v-today"></span>Today — inbound only</span><span class="key"><span class="sw v-pipe"></span>With the outbound engine</span></div>
+        <div class="brow"><span class="blab">Today</span><div class="btrack"><div class="bfill v-today" style="width:43%"></div><span class="bval">1.6 of 4 reviews happen</span></div></div>
+        <div class="brow"><span class="blab">Engine</span><div class="btrack"><div class="bfill v-pipe" style="width:100%"></div><span class="bval">3.7 of 4 (indicative)</span></div></div>
         <details>
           <summary>More conditions the cadence engine covers</summary>
           <table>
@@ -464,16 +464,16 @@
       reward the doctors patients keep choosing.</p>
 
       <div class="legend" role="list" aria-label="Chart legend">
-        <span class="key" role="listitem"><span class="sw" style="background:var(--today)"></span>Today</span>
-        <span class="key" role="listitem"><span class="sw" style="background:var(--pipe)"></span>Matched + outbound</span>
+        <span class="key" role="listitem"><span class="sw v-today"></span>Today</span>
+        <span class="key" role="listitem"><span class="sw v-pipe"></span>Matched + outbound</span>
       </div>
 
       <div class="grid g3">
         <div class="card">
           <h3>The GP</h3>
           <p class="note" style="margin:0 0 10px">Billings lost to empty slots + no-shows, per FTE per year</p>
-          <div class="brow"><span class="blab">Today</span><div class="btrack"><div class="bfill" style="width:100%;background:var(--today)"></div><span class="bval">$36k lost</span></div></div>
-          <div class="brow"><span class="blab">Engine</span><div class="btrack"><div class="bfill" style="width:22%;background:var(--pipe)"></div><span class="bval">$8k lost</span></div></div>
+          <div class="brow"><span class="blab">Today</span><div class="btrack"><div class="bfill v-today" style="width:100%"></div><span class="bval">$36k lost</span></div></div>
+          <div class="brow"><span class="blab">Engine</span><div class="btrack"><div class="bfill v-pipe" style="width:22%"></div><span class="bval">$8k lost</span></div></div>
           <ul class="mathlist">
             <li>560 lost slots → ~340 refilled with due follow-ups ≈ +$22k</li>
             <li>Re-engaged chronic patients → care plans &amp; reviews ≈ +$9k</li>
@@ -486,8 +486,8 @@
         <div class="card">
           <h3>The practice owner</h3>
           <p class="note" style="margin:0 0 10px">Patients still active at 12 months</p>
-          <div class="brow"><span class="blab">Unmatched</span><div class="btrack"><div class="bfill" style="width:59%;background:var(--today)"></div><span class="bval">48%</span></div></div>
-          <div class="brow"><span class="blab">Matched</span><div class="btrack"><div class="bfill" style="width:100%;background:var(--pipe)"></div><span class="bval">81% (indicative)</span></div></div>
+          <div class="brow"><span class="blab">Unmatched</span><div class="btrack"><div class="bfill v-today" style="width:59%"></div><span class="bval">48%</span></div></div>
+          <div class="brow"><span class="blab">Matched</span><div class="btrack"><div class="bfill v-pipe" style="width:100%"></div><span class="bval">81% (indicative)</span></div></div>
           <ul class="mathlist">
             <li>No-shows 8% → under 3% (“reply YES” holds a real slot)</li>
             <li>Slot fill 92% → 98%</li>
@@ -501,8 +501,8 @@
         <div class="card">
           <h3>The system &amp; payer</h3>
           <p class="note" style="margin:0 0 10px">Recommended chronic follow-ups completed</p>
-          <div class="brow"><span class="blab">Today</span><div class="btrack"><div class="bfill" style="width:67%;background:var(--today)"></div><span class="bval">52%</span></div></div>
-          <div class="brow"><span class="blab">Engine</span><div class="btrack"><div class="bfill" style="width:100%;background:var(--pipe)"></div><span class="bval">78% target</span></div></div>
+          <div class="brow"><span class="blab">Today</span><div class="btrack"><div class="bfill v-today" style="width:67%"></div><span class="bval">52%</span></div></div>
+          <div class="brow"><span class="blab">Engine</span><div class="btrack"><div class="bfill v-pipe" style="width:100%"></div><span class="bval">78% target</span></div></div>
           <ul class="mathlist">
             <li>Continuity of GP care is among the best-evidenced predictors of fewer ED visits and admissions</li>
             <li>The avoided consult happens years earlier — cheapest point of intervention</li>
@@ -612,12 +612,12 @@
       Illustrative only, not a clinical tool; nothing you pick is stored.</p>
       <div class="card quizfallback" style="margin-top:24px">
         <h3>The five personas, at a glance</h3>
-        <p style="margin:0;font-size:14.5px;color:var(--ink-2)">
-          <b style="color:var(--navy)">Mirror Seeker (18%)</b> wants a doctor who shares their background or language ·
-          <b style="color:var(--navy)">Table Matcher (14%)</b> wants advice that fits their food culture ·
-          <b style="color:var(--navy)">No-Judgement Seeker (24%)</b> wants an explicit welcome for the consult they’ve been avoiding ·
-          <b style="color:var(--navy)">Data Devotee (12%)</b> wants their wearable data taken seriously ·
-          <b style="color:var(--navy)">Continuity Craver (32%)</b> wants one doctor for the whole family.
+        <p class="defs">
+          <b class="term">Mirror Seeker (18%)</b> wants a doctor who shares their background or language ·
+          <b class="term">Table Matcher (14%)</b> wants advice that fits their food culture ·
+          <b class="term">No-Judgement Seeker (24%)</b> wants an explicit welcome for the consult they’ve been avoiding ·
+          <b class="term">Data Devotee (12%)</b> wants their wearable data taken seriously ·
+          <b class="term">Continuity Craver (32%)</b> wants one doctor for the whole family.
           Full profiles are in <a href="#personas">section 02</a> above.
         </p>
       </div>

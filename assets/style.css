@@ -32,6 +32,7 @@
 
   --accent:#eb6834;      /* CTA coral-orange */
   --good:#0b7d3e;      /* success green, shared by page ticks and canvas ticks */
+  --bad:#c8503f;       /* its counterpart, shared by page crosses and canvas crosses */
   --hl:rgba(237,161,0,.32); /* marker-highlight wash */
 
   --disp:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
@@ -120,6 +121,10 @@ p{max-width:70ch}
 .tile .tvalue{font-family:var(--disp);font-weight:700;color:var(--navy);font-size:clamp(25px,3vw,32px);line-height:1.12;margin:0}
 .tile .tdelta{font-size:13px;margin:6px 0 0;color:var(--ink-2)}
 .up{color:var(--good);font-weight:700}
+.good{color:var(--good)}
+.bad{color:var(--bad)}
+/* the instruction line that sits above an interactive figure */
+.fighint{font-size:15px;color:var(--ink-2);font-weight:600;font-family:var(--body)}
 .hero-fig{font-family:var(--disp);font-weight:800;color:var(--navy);
   font-size:clamp(64px,9vw,116px);line-height:1;margin:6px 0 0;letter-spacing:-.02em}
 .hero-fig small{font-size:.3em;font-weight:700;color:var(--ink-2);letter-spacing:0}
@@ -130,17 +135,41 @@ p{max-width:70ch}
 .avatar{display:block;border-radius:50%}
 
 /* ---------- segmented persona bar ---------- */
+
+/* ---------- hue tokens: one declaration, every component ----------
+   A component asks for var(--p) (its fill) and var(--on-p) (text legible on
+   that fill); a single class supplies both. A persona is therefore the same
+   colour in the segmented bar, its legend chip, its swatch, its card edge and
+   its timeline dot from ONE place — where before each of those carried its own
+   inline copy of the palette variable and could drift independently. */
+.p1{--p:var(--s1);--on-p:var(--on-s1)}
+.p2{--p:var(--s2);--on-p:var(--on-s2)}
+.p3{--p:var(--s3);--on-p:var(--on-s3)}
+.p4{--p:var(--s4);--on-p:var(--on-s4)}
+.p5{--p:var(--s5);--on-p:var(--on-s5)}
+.t-gp,.tag-gp{--p:var(--tier-gp);--on-p:var(--on-tier-gp)}
+.t-sp,.tag-sp{--p:var(--tier-sp);--on-p:var(--on-tier-sp)}
+.v-today{--p:var(--today);--on-p:#fff}
+.v-pipe{--p:var(--pipe);--on-p:#fff}
+.dim{opacity:.3}
+
+/* the hub's card-top version of .bigbar: same segmented-population idea at
+   decorative scale, so the two never drift apart */
+.minibar{display:flex;gap:2px;height:14px;border-radius:4px;overflow:hidden;margin:0}
+.minibar>i{display:block;background:var(--p,var(--mut))}
+
 .bigbar{display:flex;gap:2px;height:24px;margin:26px 0 0}
 .bigbar .seg{
   position:relative;border:0;padding:0;cursor:pointer;height:24px;
   display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;font-family:var(--body)
+  font-size:12px;font-weight:700;font-family:var(--body);
+  background:var(--p,var(--mut));color:var(--on-p,#fff)
 }
 .bigbar .seg:first-child{border-radius:4px 0 0 4px}
 .bigbar .seg:last-child{border-radius:0 4px 4px 0}
 .bigbar .seg:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
 .rails{display:flex;gap:2px;margin-top:10px}
-.rail{border-top:4px solid;padding-top:7px;font-size:12.5px;color:var(--ink-2)}
+.rail{border-top:4px solid var(--p,var(--line));padding-top:7px;font-size:12.5px;color:var(--ink-2)}
 .rail b{color:var(--navy)}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 .chip{
@@ -148,7 +177,7 @@ p{max-width:70ch}
   background:var(--paper);border-radius:999px;padding:5px 14px;font-size:13px;font-weight:600;
   cursor:pointer;color:var(--ink);font-family:var(--body)
 }
-.chip .dot{width:10px;height:10px;border-radius:50%;flex:none}
+.chip .dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--p,var(--mut))}
 .chip:hover{border-color:var(--navy)}
 .chip:focus-visible,.mreset:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
 .chip[aria-pressed="true"]{border-color:var(--navy);background:var(--navy);color:#fff}
@@ -156,7 +185,7 @@ p{max-width:70ch}
 
 /* ---------- persona cards ---------- */
 .personas{grid-template-columns:repeat(auto-fit,minmax(min(305px,100%),1fr));margin-top:28px}
-.pcard{border-top:6px solid;display:flex;flex-direction:column;gap:10px}
+.pcard{border-top:6px solid var(--p,var(--line));display:flex;flex-direction:column;gap:10px}
 .pcard .phead{display:flex;align-items:center;gap:14px}
 .pcard .phead .av{width:64px;height:64px;border-radius:50%;flex:none}
 .pcard h3{font-size:20px;margin:0}
@@ -167,19 +196,22 @@ p{max-width:70ch}
 .pcard dd b{color:var(--ink)}
 .pcard .money{border-top:1px solid var(--line);padding-top:10px;font-size:14px;color:var(--ink-2)}
 .pcard .money b{color:var(--navy)}
-.track-tag{display:inline-block;font-family:var(--disp);font-size:11px;font-weight:700;border-radius:999px;padding:3px 11px;margin-top:4px}
-.tag-gp{background:var(--tier-gp);color:var(--on-tier-gp)}
-.tag-sp{background:var(--tier-sp);color:var(--on-tier-sp)}
+.track-tag{display:inline-block;font-family:var(--disp);font-size:11px;font-weight:700;border-radius:999px;padding:3px 11px;margin-top:4px;background:var(--p,var(--mut));color:var(--on-p,#fff)}
 
 /* ---------- paired comparison bars ---------- */
 .legend{display:flex;gap:18px;align-items:center;font-size:13px;color:var(--ink-2);margin:6px 0 14px;flex-wrap:wrap;font-weight:600}
 .legend .key{display:inline-flex;align-items:center;gap:7px}
-.legend .sw{width:12px;height:12px;border-radius:3px}
+.legend .sw{width:12px;height:12px;border-radius:3px;background:var(--p,var(--mut))}
 .brow{display:grid;grid-template-columns:78px 1fr;align-items:center;gap:10px;margin:7px 0}
 .blab{font-size:13px;color:var(--ink-2);text-align:right;font-weight:600}
 .btrack{position:relative;min-height:20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;row-gap:3px}
-.bfill{height:20px;border-radius:0 4px 4px 0;flex:none}
+.bfill{height:20px;border-radius:0 4px 4px 0;flex:none;background:var(--p,var(--mut))}
 .bval{font-size:13.5px;font-weight:700;color:var(--navy);white-space:nowrap;font-variant-numeric:tabular-nums}
+/* a run of bold-led definitions read as one paragraph:
+   "Term — description · Term — description". Used for the hub's shared method
+   and the no-JS persona summary, which were building the same thing by hand. */
+.defs{margin:0;font-size:14.5px;color:var(--ink-2)}
+.term{color:var(--navy)}
 .mathlist{margin:12px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink-2)}
 .mathlist li{margin:3px 0}
 .plus{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
@@ -228,7 +260,7 @@ dialog.maths.maths-fallback[open]{position:fixed;left:50%;top:50%;transform:tran
 .contrast{list-style:none;margin:10px 0 0;padding:0}
 .contrast li{position:relative;padding:5px 0 5px 26px;font-size:14.5px;line-height:1.5;color:var(--ink-2)}
 .contrast li::before{position:absolute;left:0;top:5px;font-weight:800;font-family:var(--disp)}
-.contrast li.no::before{content:"✕";color:#c8503f}
+.contrast li.no::before{content:"✕";color:var(--bad)}
 .contrast li.yes::before{content:"✓";color:var(--good)}
 
 /* ---------- tables ---------- */
@@ -291,7 +323,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 .cadence .axis{position:absolute;left:0;right:0;top:40px;height:2px;background:var(--line)}
 .cadence .tick{position:absolute;top:34px;width:2px;height:14px;background:var(--line)}
 .cadence .tlab{position:absolute;top:56px;transform:translateX(-50%);font-size:11.5px;color:var(--mut);white-space:nowrap}
-.cadence .visit{position:absolute;top:31px;width:20px;height:20px;border-radius:50%;transform:translateX(-50%);border:2px solid var(--paper);box-shadow:0 0 0 1.5px var(--line)}
+.cadence .visit{position:absolute;top:31px;width:20px;height:20px;border-radius:50%;transform:translateX(-50%);border:2px solid var(--paper);box-shadow:0 0 0 1.5px var(--line);background:var(--p,var(--mut))}
 .cadence .vlab{position:absolute;top:2px;transform:translateX(-50%);font-size:11.5px;font-weight:700;color:var(--navy);white-space:nowrap}
 
 /* ---------- persona quiz (interactive card is JS-only; static fallback otherwise) ---------- */

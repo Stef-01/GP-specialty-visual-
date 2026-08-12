@@ -21,7 +21,10 @@ figure, their needs appear as plain-language lines on a card, and the argument w
 to the whole population (Explainer 02: 20 scenes; Explainer 01: 18). **Scroll selects the scene; crossing a step fires a timed tween
 that always completes** — parking the page anywhere settles on a composed scene, never a
 mid-transition frame (the interaction model of the reference explainer; see
-`docs/rca-animation-postmortem.md`). Honours `prefers-reduced-motion` with static composed
+`docs/rca-animation-postmortem.md`). **Each step is paced by how much it actually changes** —
+duration is derived from measured figure travel and camera work (520–1200 ms) rather than a flat
+constant, and the camera interpolates zoom geometrically so a close-up plays at an even perceived
+rate instead of rushing then drifting. Honours `prefers-reduced-motion` with static composed
 frames, and is held to a numeric clutter budget documented in `docs/plan.md`.
 
 ## Testing
@@ -29,7 +32,8 @@ frames, and is held to a numeric clutter budget documented in `docs/plan.md`.
 `tests/theatre-qa.mjs` is the standing QA gate born of that RCA: it drives **real scrolling**
 (not test-API poses) at 390/1280/2000 px, parks 60% into transitions and byte-compares what
 settles against the composed target scene, then checks stillness after settle, completed scan
-sweeps at rest, one-caption-at-a-time discipline, mobile overflow and reduced-motion stillness.
+sweeps at rest, an even perceived camera-zoom rate, one-caption-at-a-time discipline, mobile
+overflow and reduced-motion stillness.
 
 ```sh
 node tests/theatre-qa.mjs          # full matrix
