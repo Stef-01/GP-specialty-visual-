@@ -97,6 +97,18 @@
     // ctx.font assignment parses a CSS font string — cache it, it's a hot path
     var curFont = '';
     function setFont(f) { if (f !== curFont) { curFont = f; ctx.font = f; } }
+    // ctx.restore() rolls ctx.font back to whatever it was at the matching
+    // save() — which the cache above cannot see, so a later setFont() with the
+    // cached string is skipped while the real font is stale. That is how a
+    // second card in the same frame ended up measured AND drawn at the first
+    // card's size, and why the survivor's text reflowed in a single frame the
+    // moment the other card's alpha gate tripped. Every restore goes through
+    // here, so the cache is dropped with the state it described.
+    function restore() { ctx.restore(); curFont = ''; }
+    // Below this the element is under one 8-bit alpha step: invisible, so
+    // skipping it cannot show. The old 0.02 gate cut elements while they were
+    // still on screen, which read as a pop at the end of a fade.
+    var VIS = 1 / 255;
     var F_BIG = '', F_SMALL = '', F_ANNO = '600 12px Inter, system-ui, sans-serif', F_TINY = '700 11px Inter, system-ui, sans-serif';
     var F_CARD = '600 13px Inter, system-ui, sans-serif';
     var F_CARDT = '700 14.5px Poppins, Inter, system-ui, sans-serif';
@@ -203,6 +215,7 @@
         meta[name] = out.meta || {};
       }
       focusCache = {};
+      stepCostCache = {};   // costs are measured in stage px, so geometry owns them
     }
     // layouts are authored in box-local coordinates; this moves them onto the stage
     function shiftXY(out, dx, dy) {
@@ -414,7 +427,7 @@
           var eB = B.dim && B.dim.keep.length === 0 ? B.dim.to : 1;
           al *= lerp(eA, eB, m);
         }
-        if (al <= 0.02) continue;
+        if (al <= VIS) continue;
         var p = project([x, y], cam);
         if (p[0] < -80 || p[0] > W + 80 || p[1] < -80 || p[1] > H + 80) continue;
         drawClinician(p[0], p[1], U * 2.1 * cam[0], spec, al);
@@ -424,7 +437,7 @@
 
     /* ---------- zones (soft pool backdrops) ---------- */
     function drawZones(scene, alpha, cam) {
-      if (!scene || alpha <= 0.02) return;
+      if (!scene || alpha <= VIS) return;
       var Z = (meta[scene.key] || {}).zones || [];
       for (var i = 0; i < Z.length; i++) {
         ctx.globalAlpha = alpha * (Z[i].alpha || 0.06);
@@ -484,7 +497,7 @@
         } else {
           L = b; x = b.x; y = b.y; al = labelAlpha(B, pairs[i].bi, b) * m;
         }
-        if (!L.text || al <= 0.02) continue;
+        if (!L.text || al <= VIS) continue;
         ctx.globalAlpha = al;
         ctx.fillStyle = L.muted ? ink2 : ink;
         setFont(L.big ? F_BIG : F_SMALL);
@@ -503,7 +516,7 @@
         ctx.fillText(L.text, p[0], p[1]);
       }
       if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
-      ctx.restore();
+      restore();
     }
 
     /* ---------- narrative cards ----------
@@ -529,6 +542,8 @@
       if (cur) out.push(cur);
       return out;
     }
+    // tick/cross match the page's --good/--bad exactly, so a mark means the
+    // same thing whether it is drawn on canvas or laid out in HTML
     var MARKC = { tick: '#0b7d3e', cross: '#c8503f', dot: '#8a93a8', want: '#2a78d6' };
     function drawMark(kind, x, y, r, col) {
       ctx.lineCap = 'round'; ctx.lineJoin = 'round';
@@ -579,7 +594,7 @@
       var y = clamp(pos[1] - cardH / 2, box.y0 + 2, Math.max(box.y0 + 2, box.y1 - cardH - 2));
 
       var ca = alpha * clamp((tt - 0.03) / 0.16, 0, 1);
-      if (ca <= 0.02) return;
+      if (ca <= VIS) return;
       // the card settles upward into place, like the page's reveal rhythm
       y += (1 - ease(ca)) * 10;
       ctx.save();
@@ -640,17 +655,24 @@
         ctx.globalAlpha = ca;
         ty += r0.lines.length * LH + GAPR;
       }
-      ctx.restore();
+      restore();
     }
 
     /* ---------- extras ---------- */
-    function drawExtras(scene, tt, alpha, cam) {
-      if (!scene || alpha <= 0.02) return;
+    // cardAlpha is separate from alpha: consecutive scenes carry DIFFERENT
+    // cards, so crossfading them on the scene curve put two white cards at half
+    // opacity in two different places for a fifth of the tween — the same
+    // ghosting that shared clinicians were taught to walk out of. The outgoing
+    // card now leaves before the incoming one lands; the incoming card keeps
+    // the scene curve so its rows still reveal in sequence.
+    function drawExtras(scene, tt, alpha, cam, cardAlpha) {
+      if (!scene || alpha <= VIS) return;
       var cardList = (W < 680 && scene.cardsNarrow) ? scene.cardsNarrow : scene.cards;
       if (cardList) {
+        var ca0 = cardAlpha == null ? alpha : cardAlpha;
         for (var ci = 0; ci < cardList.length; ci++) {
           cardList[ci]._key = scene.key;
-          drawCard(cardList[ci], tt, alpha, cam);
+          drawCard(cardList[ci], tt, ca0, cam);
         }
       }
       if (!scene.extra) return;
@@ -688,7 +710,7 @@
         ctx.setLineDash([6, 6]);
         ctx.strokeStyle = 'rgba(138,147,168,.9)'; ctx.lineWidth = 1.6;
         ctx.beginPath(); ctx.moveTo(la[0], la[1]); ctx.lineTo(ex, ey); ctx.stroke();
-        ctx.restore();
+        restore();
         if (app >= 1) {
           var mx = (la[0] + lb[0]) / 2, my = (la[1] + lb[1]) / 2;
           var ca2 = clamp((tt - 0.5) / 0.3, 0, 1);
@@ -737,11 +759,11 @@
           }
         }
       }
-      ctx.restore();
+      restore();
     }
 
     /* ---------- render ---------- */
-    var lastP = -1;
+    var lastP = -1, lastCam = [1, 0, 0];
     function render(p, force) {
       p = clamp(p, 0, SC - 1);
       // a sub-pixel scroll delta cannot change the frame — skip the repaint
@@ -755,7 +777,18 @@
       var A = scenes[si], B = scenes[si + 1];
       var layA = layouts[A.key], layB = layouts[B.key];
       var camA = camOf(A), camB = camOf(B);
-      var cam = [lerp(camA[0], camB[0], m), lerp(camA[1], camB[1], m), lerp(camA[2], camB[2], m)];
+      // Zoom is MULTIPLICATIVE, so interpolate it in log space. A linear ramp
+      // from 1x to 4.2x has spent two thirds of its perceived travel by the
+      // halfway point and then crawls to a stop — the "rush, then drift" feel
+      // on every close-up. Geometric interpolation makes the apparent zoom rate
+      // constant and lands on exactly the same endpoints, which is why the
+      // composed scenes are untouched. Endpoints are taken verbatim so no
+      // rounding can creep into a resting pose.
+      var cz = m <= 0 ? camA[0] : m >= 1 ? camB[0]
+             : camA[0] === camB[0] ? camA[0]
+             : camA[0] * Math.pow(camB[0] / camA[0], m);
+      var cam = [cz, lerp(camA[1], camB[1], m), lerp(camA[2], camB[2], m)];
+      lastCam = cam;
       var tt = t;
 
       ctx.clearRect(0, 0, W, H);
@@ -807,7 +840,8 @@
       ctx.globalAlpha = 1;
       drawCliniciansPair(A, B, m, cam, si);
       drawLabelsPair(A, B, m, cam, si);
-      drawExtras(A, 1, 1 - m, cam); drawExtras(B, u, m, cam);
+      drawExtras(A, 1, 1 - m, cam, clamp((0.45 - m) / 0.45, 0, 1));
+      drawExtras(B, u, m, cam, m);
 
       if (staticMode) return; // overlays are pinned by the static composition
 
@@ -884,13 +918,46 @@
     // back triggers the reverse. After settle there is zero motion.
     var raf = null, vp = null, tween = null;
     function sceneFromScroll() { return clamp(Math.round(progress()), 0, SC - 1); }
+
+    // HOW MUCH a step actually changes, in units of "one box". Measured, because
+    // the storyboards' steps are wildly unequal: some re-sort two hundred people
+    // across the stage, some only swap a card on a stage that does not move. A
+    // flat duration makes the first feel hurried and the second feel stalled.
+    var stepCostCache = {};
+    function stepCost(i, j) {
+      var k = i + '>' + j, v = stepCostCache[k];
+      if (v !== undefined) return v;
+      var A = scenes[i], B = scenes[j];
+      var la = layouts[A.key], lb = layouts[B.key], span = Math.max(1, Math.min(box.w, box.h));
+      var tot = 0, n = 0;
+      // every third figure is a plenty-accurate mean and keeps this ~70 ops
+      for (var d = 0; d < N; d += 3) {
+        var pa = la && la[d], pb = lb && lb[d];
+        if (!pa || !pb) continue;
+        tot += Math.abs(pa[0] - pb[0]) + Math.abs(pa[1] - pb[1]);
+        n++;
+      }
+      var travel = n ? (tot / n) / span : 0;
+      var ca = camOf(A), cb = camOf(B);
+      var zoom = Math.abs(Math.log(Math.max(0.01, cb[0]) / Math.max(0.01, ca[0])));
+      var pan = (Math.abs(cb[1] - ca[1]) + Math.abs(cb[2] - ca[2])) / span * ca[0];
+      var cards = ((A.cards || A.cardsNarrow) ? 1 : 0) + ((B.cards || B.cardsNarrow) ? 1 : 0);
+      return (stepCostCache[k] = travel + 0.55 * zoom + 0.5 * pan + 0.07 * cards);
+    }
+
     function startTween(to) {
       var from = vp === null ? to : vp;
       if (from === to) { tween = null; render(to, true); return; }
       // a long jump plays as ONE clean transition from the neighbouring scene,
       // not a fast-forward through every intermediate morph
       if (Math.abs(to - from) > 2) from = to - (to > from ? 1 : -1);
-      tween = { from: from, to: to, t0: performance.now(), dur: Math.min(1400, 850 + 350 * Math.max(0, Math.abs(to - from) - 1)) };
+      // sub-linear in the amount of change, so the apparent speed stays roughly
+      // constant across steps that differ by two orders of magnitude; the band
+      // keeps every step a single one-shot well inside the 1.4 s ceiling
+      var i0 = clamp(to > from ? to - 1 : to, 0, SC - 2);
+      var dur = clamp(520 + 820 * Math.sqrt(clamp(stepCost(i0, i0 + 1), 0, 1)), 520, 1200);
+      dur = Math.min(1400, dur + 350 * Math.max(0, Math.abs(to - from) - 1));
+      tween = { from: from, to: to, t0: performance.now(), dur: dur };
       if (!raf) raf = requestAnimationFrame(tickTween);
     }
     function tickTween(ts) {
@@ -945,6 +1012,8 @@
       set: function (p) { override = p; tween = null; render(p, true); },
       release: function () { override = null; vp = null; schedule(); },
       progress: function () { return lastP; },
+      // read-only, for tests/theatre-qa.mjs: [zoom, centreX, centreY]
+      cam: function () { return lastCam.slice(); },
       scenes: SC,
       canvas: canvas
     };

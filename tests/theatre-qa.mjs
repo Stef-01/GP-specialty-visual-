@@ -16,6 +16,9 @@
  *   3. scan-complete  — the ranked/scan scene at rest shows the sweep FINISHED:
  *                       a healthy fraction of painted pixels carry persona
  *                       colour (chroma), not the pre-scan neutral grey.
+ *  3b. camera-rate   — a zoom plays at an even PERCEIVED rate: zoom is
+ *                       multiplicative, so d(log z)/dt is what must be uniform,
+ *                       and a plain lerp on z is not.
  *   4. captions       — parked on any scene, at most one caption is visible,
  *                       and something (caption or stats overlay) is.
  *   5. overflow       — at 390px the document never scrolls horizontally.
@@ -131,6 +134,35 @@ for (const [w, h] of VIEWPORTS) {
     await page.waitForTimeout(2200);
     const cf = await chromaFraction(page);
     report(cf >= spec.minChroma, `scan scene ${spec.scan} rests fully swept (coloured ${(cf * 100).toFixed(1)}% >= ${spec.minChroma * 100}%)`);
+
+    // 3b: a camera move must play at an EVEN perceived rate. Zoom is
+    // multiplicative, so the thing that has to be uniform is d(log z)/dt; a
+    // plain lerp on z spends over half its perceived travel in one quarter of
+    // the tween and ~3% in the last, which reads as a rush then a drift.
+    // Measured in quarters: even ≈ 7x fastest/slowest (that residual IS the
+    // ease curve); a regression to linear interpolation lands near 16x.
+    const camChk = await page.evaluate(() => {
+      const api = window.__dotfields[0];
+      if (!api.cam) return { ok: false, worst: 0, at: -1, why: 'engine exposes no cam()' };
+      const S = 40;
+      let worst = 0, at = -1, moves = 0;
+      for (let s = 0; s < api.scenes - 1; s++) {
+        const z = [];
+        for (let k = 0; k <= S; k++) { api.set(s + k / S); z.push(api.cam()[0]); }
+        if (Math.max(z[0], z[S]) / Math.min(z[0], z[S]) < 1.3) continue;  // not a camera move
+        moves++;
+        const r = [];
+        for (let k = 1; k < z.length; k++) r.push(Math.abs(Math.log(z[k] / z[k - 1])));
+        const tot = r.reduce((a, b) => a + b, 0), q = [0, 0, 0, 0];
+        r.forEach((v, k) => { q[Math.min(3, Math.floor(k / r.length * 4))] += v; });
+        const sh = q.map(v => v / tot), spread = Math.max(...sh) / Math.min(...sh);
+        if (spread > worst) { worst = spread; at = s; }
+      }
+      api.release();
+      return { ok: moves > 0 && worst <= 8.5, worst: +worst.toFixed(2), at, moves };
+    });
+    report(camChk.ok, `camera zoom rate even across ${camChk.moves ?? 0} moves` +
+      `${camChk.why ? ' — ' + camChk.why : ` (worst ${camChk.worst}x at scene ${camChk.at}, ceiling 8.5x)`}`);
 
     // 4: caption discipline at every resting scene
     let capOK = true, capWhy = '';

@@ -405,6 +405,67 @@ dependency: Google Fonts. Canonical home: https://github.com/Stef-01/GP-specialt
   medians flat (~17–18 ms), tails within run-to-run noise (+4.6%/−12%/+8%) — constant shadow
   kept, decision noted in `drawCard`.
 
+- **Motion-continuity & tempo pass (v4.5, 2026-08-11).** A measured round on the engine itself,
+  after instrumenting every scene transition frame-by-frame rather than judging it by eye. The
+  instrument matters: the canvas is transparent over a white stage and `getImageData` returns
+  *un-premultiplied* RGB, so a pixel going from clear to 2%-alpha white reads as a 255-per-channel
+  jump while being invisible. Every number below composites over white first.
+  *A stale font cache was reflowing card text mid-transition (the biggest defect, and a real bug).*
+  `ctx.restore()` rolls `ctx.font` back to whatever it was at the matching `save()`, which the
+  `setFont` memo could not see — so whenever two narrative cards were on stage at once, the second
+  was measured **and drawn at the first card's size**, and the instant the outgoing card's alpha
+  gate tripped, the survivor's text re-wrapped in a single frame. Measured: the four worst
+  transitions each carried **92–96% of all their visible change in one 0.001-progress step** — a
+  hard cut, not an animation. Every restore now drops the cache; those steps now carry 5–19%.
+  *Visibility gates no longer clip elements that are still on screen.* Zones, labels, clinicians,
+  cards and extras were skipped at `alpha <= 0.02`; 2% is visible, so every fade ended in a step.
+  The gate is now 1/255 — under one 8-bit alpha level, where skipping cannot show.
+  *The camera zooms at a perceptually even rate.* Zoom is multiplicative, so a linear ramp from
+  1× to 4.2× spends over half its perceived travel in one quarter of the tween and 3% in the last
+  — rush, then drift. `z` is now interpolated geometrically. Measured on the engine's own camera
+  (new read-only `api.cam()`): quarter-shares of the perceived move went from **12.7 / 53.9 / 30 /
+  3.4** to **6.2 / 43.8 / 43.7 / 6.3**, now identical for zoom-in and zoom-out; worst-case
+  unevenness **15.9× → 7.0×**, the residual being the intended ease curve. *Recorded because it
+  cost an hour:* whole-canvas pixel-churn is **not** a valid metric for this — it is dominated by
+  how much ink is on screen (linear-z keeps figures bigger mid-tween), and it moves the wrong way.
+  Test the claim, not a proxy for it.
+  *Tempo follows the content.* Every step took a flat 850 ms across storyboards whose steps differ
+  by 20× in how much they change — a whole-stage re-sort felt hurried and a card swap on a still
+  stage felt stalled. Duration is now derived from measured per-dot travel + camera work + card
+  count, sub-linear (√), banded 520–1200 ms and still one one-shot inside the 1.4 s ceiling.
+  Real-scroll settle times: **838–958 ms flat → 488–1229 ms**, tracking the step.
+  *Cards hand off instead of ghosting.* Consecutive scenes carry different cards, and both sat at
+  ≥25% opacity simultaneously for ~20% of the tween — two white cards in two places, the same
+  ghosting shared clinicians were taught to walk out of. The outgoing card now clears by m = 0.45;
+  the incoming one keeps the scene curve so its rows still reveal in sequence.
+  *Rest states are untouched by construction* — every change above affects only intermediate
+  frames, and the endpoints are taken verbatim (the geometric zoom returns `camA`/`camB` exactly at
+  m = 0/1 rather than a rounded product). Full `theatre-qa.mjs` matrix green at 390/1280/2000 for
+  both storyboards, plus a new standing check that the camera's perceived rate stays even.
+
+- **Design system: one hue token, many components (v4.5).** The palette was correct everywhere but
+  *restated* everywhere: 86 elements carried their own inline copy of a persona/tier/comparison
+  variable, so a segmented bar, its legend chip, its swatch, its card edge and its timeline dot
+  each owned an independent chance to drift. Components now ask for `var(--p)` (fill) and
+  `var(--on-p)` (text legible on that fill), and a single class — `.p1`–`.p5`, `.t-gp`/`.t-sp`,
+  `.v-today`/`.v-pipe` — supplies both. Eight components were wired to it (`.bigbar .seg`,
+  `.chip .dot`, `.legend .sw`, `.pcard`, `.rail`, `.bfill`, `.track-tag`, `.cadence .visit`), and
+  the hub's and Explainer 01's hero bars — the same decorative segmented bar, previously built by
+  hand in two places — became one `.minibar` component. **Zero colour-bearing inline styles remain**
+  (was 86); inline `style=` attributes fell from 177 to 142, the remainder being genuine per-instance
+  data (a segment's share, a bar's width, a marker's position). Verified by full-page screenshot
+  diff at 390/900/1440 across all four pages: **all 12 pixel-identical**, so the refactor is
+  provably presentation-neutral.
+
+- **Content reconciliation (v4.5).** The per-GP uplift headline said **+$15–18k** while the same
+  page's prose said a GP carries **30–40** pipeline patients and its own MBS pop-out derived
+  "30–40 patients spans +$13k–18k" — 30 × $449 = $13.5k, so the headline overstated its own low
+  end. Corrected to **+$13–18k** in the Explainer 01 tile and the executive summary, with the
+  pop-out now naming $14.8k as the mid-point of that range; `docs/plan.md` already said $13–18k.
+  One Explainer 01 caption had drifted to 31 words against the ≤30 clutter budget and was tightened.
+  Re-checked and holding: scene counts (18 / 20), persona shares summing to 100 in both segmented
+  bars, and the trial arithmetic ($460k + $380k = $840k; 8-month payback; 127 → 55 days = −57%).
+
 ## Roadmap (v2)
 
 Real MBS item lookups. The product is otherwise feature-complete for its purpose.
