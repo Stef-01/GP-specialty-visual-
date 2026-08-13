@@ -204,7 +204,7 @@ p{max-width:70ch}
 .legend .sw{width:12px;height:12px;border-radius:3px;background:var(--p,var(--mut))}
 .brow{display:grid;grid-template-columns:78px 1fr;align-items:center;gap:10px;margin:7px 0}
 .blab{font-size:13px;color:var(--ink-2);text-align:right;font-weight:600}
-.btrack{position:relative;min-height:20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;row-gap:3px}
+.btrack{position:relative;min-width:0;min-height:20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;row-gap:3px}
 .bfill{height:20px;border-radius:0 4px 4px 0;flex:none;background:var(--p,var(--mut))}
 .bval{font-size:13.5px;font-weight:700;color:var(--navy);white-space:nowrap;font-variant-numeric:tabular-nums}
 /* a run of bold-led definitions read as one paragraph:

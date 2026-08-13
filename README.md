@@ -1,6 +1,6 @@
 # Care Personas
 
-**Two interactive, animation-first explainers** applying precision-persona segmentation (in the
+**Three interactive, animation-first explainers** applying precision-persona segmentation (in the
 tradition of Surgo Ventures' vaccine-persona explainer) to health-system design. This repo is the
 product's canonical home — a standalone static site, no build step, no framework.
 
@@ -9,7 +9,8 @@ product's canonical home — a standalone static site, no build step, no framewo
 | `index.html` | Product hub — the shared method | Everyone |
 | `specialist-gp-pipeline.html` | **Explainer 01:** screen every referral for complexity; move the bottom 20% of the specialist caseload to accredited GPs with an eConsult backstop. GPs bill more, specialists bill more, waitlists halve. | Hospital networks, CMO |
 | `matched-family-gp.html` | **Explainer 02:** match patients to doctors who fit them (culture, food, judgement-free care, wearables, whole-family) via a 20-second conversation, then run outbound follow-up on EHR-predicted need. | Primary-care networks, payers |
-| `executive-summary.html` | **One-pager:** both concepts, their economics and both asks on a single sheet — prints to exactly one A4 page. | The room |
+| `retinal-screen.html` | **Explainer 03:** put an AI-assisted retinal camera in the GP room and grade every diabetic retina before a referral exists. Six in ten of today's eye-clinic diabetes list have no retinopathy; the tenth with sight-threatening disease is seen in weeks instead of queuing behind them. Includes a research-stage "oculomics" second read, labelled as such. | Primary health networks, eye services, diabetes programs |
+| `executive-summary.html` | **One-pager:** the concepts, their economics and the asks on a single sheet — prints to exactly one A4 page. | The room |
 
 Only external dependency: Google Fonts.
 
@@ -18,7 +19,7 @@ Only external dependency: Google Fonts.
 under a scan sweep, form ranked queues and clusters, and play out the story's choreography while
 the camera zooms in and out. **Each story starts with one person**: the camera locks onto a single
 figure, their needs appear as plain-language lines on a card, and the argument widens from there
-to the whole population (Explainer 02: 20 scenes; Explainer 01: 18). **Scroll selects the scene; crossing a step fires a timed tween
+to the whole population (Explainer 02: 20 scenes; Explainer 03: 20; Explainer 01: 18). **Scroll selects the scene; crossing a step fires a timed tween
 that always completes** — parking the page anywhere settles on a composed scene, never a
 mid-transition frame (the interaction model of the reference explainer; see
 `docs/rca-animation-postmortem.md`). **Each step is paced by how much it actually changes** —

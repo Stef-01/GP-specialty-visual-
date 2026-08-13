@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Explainer 03 — The Sight-Saving Screen. Five retinal personas, one AI-assisted camera in the GP room: image every diabetic retina where the patient already is, and send the ophthalmologist only the eyes that need them. Indicative economics for health-system leaders.">
+<title>The Sight-Saving Screen · Care Personas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <a class="logo" href="index.html" aria-label="Care Personas home">
+    <svg width="36" height="22" viewBox="0 0 40 24" aria-hidden="true">
+      <circle cx="6" cy="12" r="5.5" fill="#2a78d6" stroke="#fff" stroke-width="1.4"/>
+      <circle cx="13" cy="12" r="5.5" fill="#eb6834" stroke="#fff" stroke-width="1.4"/>
+      <circle cx="20" cy="12" r="5.5" fill="#1baf7a" stroke="#fff" stroke-width="1.4"/>
+      <circle cx="27" cy="12" r="5.5" fill="#eda100" stroke="#fff" stroke-width="1.4"/>
+      <circle cx="34" cy="12" r="5.5" fill="#e87ba4" stroke="#fff" stroke-width="1.4"/>
+    </svg>
+    <span class="word">CARE PERSONAS</span>
+  </a>
+  <nav class="topnav" aria-label="Sections">
+    <a href="#problem">Problem</a>
+    <a href="#personas">Personas</a>
+    <a href="#screen">Mechanism</a>
+    <a href="#disposition">Disposition</a>
+    <a href="#oculomics">Second yield</a>
+    <a href="#money">Money</a>
+    <a href="#trial">Trial</a>
+    <a class="pill" href="specialist-gp-pipeline.html">Explainer 01 →</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section id="top" class="wrap" style="padding-top:72px">
+    <div class="avarow" aria-hidden="true">
+      <svg class="avatar av" viewBox="0 0 96 96"><circle cx="48" cy="48" r="48" fill="#e6effa"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#31456e"/><rect x="44" y="52" width="8" height="10" fill="#d29a6b"/><circle cx="48" cy="40" r="17" fill="#d29a6b"/><path d="M31 40 a17 17 0 0 1 34 0 h-6 a11 11 0 0 0 -22 0 Z" fill="#8d8d95"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 47.5 q4.5 3.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      <svg class="avatar av" viewBox="0 0 96 96"><circle cx="48" cy="48" r="48" fill="#fdeae2"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#5d6f94"/><rect x="44" y="52" width="8" height="10" fill="#8c5a33"/><circle cx="48" cy="40" r="17" fill="#8c5a33"/><path d="M31 40 a17 17 0 0 1 34 0 h-6 a11 11 0 0 0 -22 0 Z" fill="#201209"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 47.5 q4.5 3.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      <svg class="avatar av" viewBox="0 0 96 96"><circle cx="48" cy="48" r="48" fill="#e4f6ef"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#274064"/><rect x="44" y="52" width="8" height="10" fill="#f2c9a0"/><circle cx="48" cy="40" r="17" fill="#f2c9a0"/><path d="M27 58 v-18 a21 21 0 0 1 42 0 v18 h-8 v-16 a13 13 0 0 0 -26 0 v16 Z" fill="#e6e9f0"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 47.5 q4.5 3.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      <svg class="avatar av" viewBox="0 0 96 96"><circle cx="48" cy="48" r="48" fill="#fdf3da"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#3b527d"/><rect x="44" y="52" width="8" height="10" fill="#a06a3f"/><circle cx="48" cy="40" r="17" fill="#a06a3f"/><path d="M31 40 a17 17 0 0 1 34 0 h-6 a11 11 0 0 0 -22 0 Z" fill="#3a2a1c"/><circle cx="42" cy="41" r="5.5" fill="none" stroke="#16244a" stroke-width="1.6"/><circle cx="54" cy="41" r="5.5" fill="none" stroke="#16244a" stroke-width="1.6"/><path d="M47.5 41 h1" stroke="#16244a" stroke-width="1.6"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 48.5 q4.5 3.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      <svg class="avatar av" viewBox="0 0 96 96"><circle cx="48" cy="48" r="48" fill="#fbe9f1"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#4a5674"/><rect x="44" y="52" width="8" height="10" fill="#eeb98d"/><circle cx="48" cy="40" r="17" fill="#eeb98d"/><path d="M31 40 a17 17 0 0 1 34 0 h-6 a11 11 0 0 0 -22 0 Z" fill="#5a3b23"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 49 q4.5 2.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+    </div>
+    <p class="eyebrow">Care Personas · Explainer 03 · For primary health networks, eye services &amp; diabetes programs</p>
+    <h1>The eye clinic is full of eyes that are fine</h1>
+    <p class="standfirst">Diabetic retinopathy is silent until it is late. Half of Australians with
+    diabetes are not imaged in a given two-year window — while the ophthalmology list fills with
+    retinas that turned out to be <span class="hl">normal</span>. Put an AI-assisted camera in the
+    room the patient is already sitting in, and the population sorts itself.</p>
+    <p class="note">A near-future model. Autonomous AI grading of diabetic retinopathy is
+    regulator-cleared overseas and in real-world use; the oculomics layer in §05 is explicitly
+    <b>not</b> standard of care and is presented as a research companion. All dollars are indicative
+    AUD from published MBS schedule fees; all rates are illustrative modelling assumptions.</p>
+
+    <div class="grid g3" style="margin-top:30px;align-items:stretch">
+      <div class="card tile">
+        <p class="tlabel">Of the practice's diabetes population imaged each cycle</p>
+        <p class="tvalue">50 → 90%</p>
+        <p class="tdelta">Opportunistic capture at a visit they already made</p>
+      </div>
+      <div class="card tile">
+        <p class="tlabel">Of today's eye-clinic diabetes list that never needed an ophthalmologist</p>
+        <p class="tvalue">61%</p>
+        <p class="tdelta">No retinopathy on grading — an interval, not an appointment</p>
+      </div>
+      <div class="card tile">
+        <p class="tlabel">Median wait for the sight-threatening referral queued behind them</p>
+        <p class="tvalue">124 → 35 days</p>
+        <p class="tdelta"><span class="up">−72%</span> modelled at steady state</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOT THEATRE — scroll-driven story (content duplicated in the sections below) -->
+  <section class="theatre" id="story" aria-hidden="true">
+    <div class="df-stage">
+      <canvas id="df3"></canvas>
+      <div class="df-step"><p class="eyebrow">One practice</p><h3>Five hundred people, one general practice.</h3><p>Every figure is a person living with diabetes. Each one has two retinas nobody has looked at recently.</p></div>
+      <div class="df-step"><p class="eyebrow">The whole book</p><h3>None of them can feel their retinopathy.</h3><p>Diabetic retinopathy is painless and symptomless until it is advanced. Sight is the last thing to go, not the first.</p></div>
+      <div class="df-step"><p class="eyebrow">One of them</p><h3>Start with one.</h3><p>He is here today for his diabetes review — bloods, feet, blood pressure, the usual half hour.</p></div>
+      <div class="df-step"><p class="eyebrow">Ray</p><h3>Ray is 62, nine years into type 2.</h3><p>He reads the newspaper without glasses and drives at night. Nothing about his vision worries him.</p></div>
+      <div class="df-step"><p class="eyebrow">Why he hasn't been</p><h3>Everybody has a reason, and none of them are laziness.</h3><p>The clinic is forty minutes away, the referral expired, the appointment clashed with a shift.</p></div>
+      <div class="df-step"><p class="eyebrow">Image them all</p><h3>Photograph every retina and the population sorts itself.</h3><p>One camera, two images per eye, sixty seconds. The grading scale has five steps, and everybody sits on one.</p></div>
+      <div class="df-step"><p class="eyebrow">The five strata</p><h3>Five retinal personas, and they are wildly unequal.</h3><p>Most eyes are clear. A tenth are already sight-threatening. Nobody in either group knows which they are.</p></div>
+      <div class="df-step"><p class="eyebrow">Six in ten</p><h3>Six in ten have no retinopathy at all.</h3><p>They need a date in the recall system, not a specialist appointment. Today many of them get the appointment.</p></div>
+      <div class="df-step"><p class="eyebrow">One in ten</p><h3>One in ten already has sight-threatening disease.</h3><p>Severe non-proliferative changes, new vessels, or macular oedema. This is the group that goes blind if it waits.</p></div>
+      <div class="df-step"><p class="eyebrow">Today</p><h3>Except half of them are never imaged at all.</h3><p>About one in two has no retinal check in a two-year window. The grey figures are guesses.</p></div>
+      <div class="df-step"><p class="eyebrow">The lottery</p><h3>Those who are referred all go to the same list.</h3><p>One pathway, one form, no grading. The clear retina and the bleeding one are booked the same.</p></div>
+      <div class="df-step"><p class="eyebrow">The clog</p><h3>So the clinic fills with eyes that are fine.</h3><p>Six in ten of the new diabetes referrals reach an ophthalmologist and are found to have no retinopathy.</p></div>
+      <div class="df-step"><p class="eyebrow">The harm</p><h3>The sight-threatening wait behind the healthy.</h3><p>A median of 124 days to a first appointment — in a disease measured in weeks of new vessel growth.</p></div>
+      <div class="df-step"><p class="eyebrow">Back to Ray</p><h3>Ray is in the one in ten.</h3><p>Severe non-proliferative retinopathy in both eyes, three years unimaged, and he still cannot feel a thing.</p></div>
+      <div class="df-step"><p class="eyebrow">Step 1 — capture</p><h3>Rewind. Image him at the visit he already made.</h3><p>The camera sits in the treatment room. No drops, no second trip, no referral for the drawer.</p></div>
+      <div class="df-step"><p class="eyebrow">Step 2 — grade</p><h3>The model returns a disposition, not a diagnosis.</h3><p>Grade, urgency, and a date: re-image in two years, re-image in twelve months, or see an ophthalmologist.</p></div>
+      <div class="df-step"><p class="eyebrow">Step 3 — sort</p><h3>Three destinations instead of one queue.</h3><p>Most people get an interval. A tenth get a tighter recall in the practice. A tenth get the specialist.</p></div>
+      <div class="df-step"><p class="eyebrow">Step 4 — the payoff</p><h3>Now the clinic sees only the eyes that need it.</h3><p>Sight-threatening disease and genuine puzzles only. Ray is seen in five weeks, with sight to save.</p></div>
+      <div class="df-step"><p class="eyebrow">The second yield</p><h3>The image was already taken. Read it twice.</h3><p>The same retinal photograph carries vascular signal — a research-stage read on cardiovascular and kidney risk, at no extra capture.</p></div>
+      <div class="df-step"><p class="eyebrow">The result</p><h3>Everyone sees sooner.</h3><p></p></div>
+      <div class="df-stats">
+        <div class="df-stat"><div class="v"><span data-countup="90" data-suf="%">0%</span></div><div class="l">of the practice's diabetes population imaged each cycle, up from about half</div></div>
+        <div class="df-stat"><div class="v"><span data-countup="72" data-pre="−" data-suf="%">−0%</span></div><div class="l">median wait for a sight-threatening referral, 124 → 35 days</div></div>
+        <div class="df-stat"><div class="v"><span data-countup="61" data-suf="%">0%</span></div><div class="l">of today's eye-clinic diabetes list returned to primary care as an interval</div></div>
+      </div>
+      <div class="df-hint">Scroll</div>
+    </div>
+  </section>
+
+  <!-- 01 PROBLEM -->
+  <section id="problem" class="tintband">
+    <div class="wrap reveal">
+      <p class="eyebrow">01 — The problem</p>
+      <h2>A silent disease, screened by lottery</h2>
+      <p class="lede">Diabetic retinopathy has the worst possible combination of properties for a
+      referral system: it is common, it is treatable, and it produces no symptoms until the damage
+      is done. So the people who most need an ophthalmologist have no reason to seek one, and the
+      people who least need one are just as likely to be sitting in the waiting room. The result is
+      a queue sorted by who happened to get a referral, not by whose sight is at risk.</p>
+
+      <div class="grid g4" style="margin-top:28px">
+        <div class="card tile"><p class="tlabel">Australians living with diabetes</p><p class="tvalue">~1.7M</p><p class="tdelta">About a third have some retinopathy</p></div>
+        <div class="card tile"><p class="tlabel">Had a retinal examination in the last two years</p><p class="tvalue">~50%</p><p class="tdelta">Australian population studies, ~50–77% depending on cohort</p></div>
+        <div class="card tile"><p class="tlabel">Median wait for a public diabetic-retinopathy referral</p><p class="tvalue">124 days</p><p class="tdelta">Western Sydney public ophthalmology, indicative</p></div>
+        <div class="card tile"><p class="tlabel">What a retinal photography screen already bills in general practice</p><p class="tvalue">$59.75</p><p class="tdelta">MBS 12326 / 12325 — the item exists today</p></div>
+      </div>
+
+      <p class="pullquote">“The referral is not sorted by risk. It is sorted by who managed to keep
+      an appointment forty minutes away for a problem they cannot feel.”</p>
+
+      <div class="card note" style="margin-top:26px">
+        <b>The item is not the barrier.</b> Unlike the eConsult in Explainer 01, this mechanism needs
+        no new MBS item. Items <b>12326</b> (all patients, once per 24 months) and <b>12325</b>
+        (Aboriginal and Torres Strait Islander patients, once per 12 months) already pay a schedule
+        fee of <b>$59.75</b> for visual acuity plus bilateral non-mydriatic retinal photography,
+        analysed and reported, performed by the practitioner managing the patient's glycaemia. What
+        is missing is the camera in the room, a grading result the GP can act on in the same
+        consultation, and a recall that fires without anybody remembering.
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 PERSONAS -->
+  <section id="personas">
+    <div class="wrap reveal">
+      <p class="eyebrow">02 — Segment the retina, not the referral</p>
+      <h2>One diabetes population. Five retinal personas.</h2>
+      <p class="lede">These five are not a taxonomy invented for this page — they are the
+      international clinical grading scale, and the whole argument is that the scale is currently
+      applied <i>after</i> the specialist appointment instead of before it. Shares are modelled on
+      the National Eye Health Survey's estimates for Australian adults aged 40 and over with
+      diagnosed diabetes: any retinopathy 39%, sight-threatening 10%.</p>
+
+      <div class="card" style="margin-top:28px">
+        <h3 class="fighint">Five hundred people with diabetes in one practice. Hover or tap a segment; click to meet the persona.</h3>
+        <div class="bigbar" role="group" aria-label="Diabetes population segmented by retinal grade">
+          <button class="seg p1" style="flex:61" data-target="r1"
+            data-tip="<b>Clear Retina — 61%</b>No apparent retinopathy<br>→ Interval, not an appointment"><span>61%</span></button>
+          <button class="seg p2" style="flex:18" data-target="r2"
+            data-tip="<b>The Early Signal — 18%</b>Mild non-proliferative<br>→ Re-image in 12 months, in practice"><span>18%</span></button>
+          <button class="seg p3" style="flex:11" data-target="r3"
+            data-tip="<b>The Watch List — 11%</b>Moderate non-proliferative<br>→ Tighter recall + metabolic control"><span>11%</span></button>
+          <button class="seg p4" style="flex:6" data-target="r4"
+            data-tip="<b>The Referable — 6%</b>Severe non-proliferative<br>→ Ophthalmologist within weeks"><span>6%</span></button>
+          <button class="seg p5" style="flex:4" data-target="r5"
+            data-tip="<b>Sight-Threatening — 4%</b>Proliferative disease or macular oedema<br>→ Ophthalmologist now"><span>4%</span></button>
+        </div>
+        <div class="rails" aria-hidden="true">
+          <div class="rail t-gp" style="flex:90"><b>90%</b> → stays in primary care on an interval or a recall, imaged again by the same camera</div>
+          <div class="rail t-sp" style="flex:10"><b>10%</b> → ophthalmology, where sight is actually saved</div>
+        </div>
+        <div class="chips" role="list" aria-label="Retinal persona legend">
+          <button class="chip" data-target="r1" role="listitem"><span class="dot p1"></span>Clear Retina · 61%</button>
+          <button class="chip" data-target="r2" role="listitem"><span class="dot p2"></span>The Early Signal · 18%</button>
+          <button class="chip" data-target="r3" role="listitem"><span class="dot p3"></span>The Watch List · 11%</button>
+          <button class="chip" data-target="r4" role="listitem"><span class="dot p4"></span>The Referable · 6%</button>
+          <button class="chip" data-target="r5" role="listitem"><span class="dot p5"></span>Sight-Threatening · 4%</button>
+        </div>
+        <details>
+          <summary>View the segmentation as a table</summary>
+          <div class="scrollwrap"><table>
+            <caption>Modelled shares of an Australian general-practice diabetes population aged 40+</caption>
+            <thead><tr><th scope="col">Persona</th><th scope="col">Clinical grade</th><th scope="col">Share</th><th scope="col">Per 500 patients</th><th scope="col">Disposition</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Clear Retina</th><td>No apparent retinopathy</td><td>61%</td><td>305</td><td>Re-image in 24 months</td></tr>
+              <tr><th scope="row">The Early Signal</th><td>Mild non-proliferative</td><td>18%</td><td>90</td><td>Re-image in 12 months</td></tr>
+              <tr><th scope="row">The Watch List</th><td>Moderate non-proliferative</td><td>11%</td><td>55</td><td>Re-image in 6–12 months, tighten control</td></tr>
+              <tr><th scope="row">The Referable</th><td>Severe non-proliferative</td><td>6%</td><td>30</td><td>Ophthalmologist, routine-urgent</td></tr>
+              <tr><th scope="row">Sight-Threatening</th><td>Proliferative disease or macular oedema</td><td>4%</td><td>20</td><td>Ophthalmologist, urgent</td></tr>
+            </tbody>
+          </table></div>
+        </details>
+      </div>
+
+      <div class="grid personas">
+        <article class="card pcard p1" id="r1">
+          <div class="phead">
+            <svg class="avatar av" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#e6effa"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#31456e"/><rect x="44" y="52" width="8" height="10" fill="#d29a6b"/><circle cx="48" cy="40" r="17" fill="#d29a6b"/><path d="M31 40 a17 17 0 0 1 34 0 h-6 a11 11 0 0 0 -22 0 Z" fill="#8d8d95"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 47.5 q4.5 3.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+            <div><h3>The Clear Retina</h3><p class="share">61% · no apparent retinopathy</p></div>
+          </div>
+          <dl>
+            <dt>What the image shows</dt><dd>Nothing. Clean vessels, clean macula, no microaneurysms.</dd>
+            <dt>What they get today</dt><dd>Often a referral, a wait, and a three-minute appointment that ends in “see you in two years”.</dd>
+            <dt>What they should get</dt><dd>A <b>date</b>. Re-image in 24 months, booked by the recall system before they leave the room.</dd>
+          </dl>
+          <p class="money"><b>Cost of getting this wrong:</b> six in ten of the eye clinic's new diabetes list — the single largest block of avoidable specialist appointments in the pathway.</p>
+          <span class="track-tag t-gp">Primary care</span>
+        </article>
+
+        <article class="card pcard p2" id="r2">
+          <div class="phead">
+            <svg class="avatar av" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#fdeae2"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#5d6f94"/><rect x="44" y="52" width="8" height="10" fill="#8c5a33"/><circle cx="48" cy="40" r="17" fill="#8c5a33"/><path d="M31 40 a17 17 0 0 1 34 0 h-6 a11 11 0 0 0 -22 0 Z" fill="#201209"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 47.5 q4.5 3.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+            <div><h3>The Early Signal</h3><p class="share">18% · mild non-proliferative</p></div>
+          </div>
+          <dl>
+            <dt>What the image shows</dt><dd>A handful of microaneurysms. The first visible evidence that glycaemic control is showing up in the smallest vessels in the body.</dd>
+            <dt>Why it matters</dt><dd>Not a threat to sight this year — but the strongest visual argument a GP will ever have in a conversation about control.</dd>
+            <dt>What they should get</dt><dd>Re-image in 12 months, in the practice, and the photograph on the screen during the chronic-disease review.</dd>
+          </dl>
+          <p class="money"><b>The teachable image:</b> a patient who has seen their own retina is a different patient in the medication conversation.</p>
+          <span class="track-tag t-gp">Primary care</span>
+        </article>
+
+        <article class="card pcard p3" id="r3">
+          <div class="phead">
+            <svg class="avatar av" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#e4f6ef"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#274064"/><rect x="44" y="52" width="8" height="10" fill="#f2c9a0"/><circle cx="48" cy="40" r="17" fill="#f2c9a0"/><path d="M27 58 v-18 a21 21 0 0 1 42 0 v18 h-8 v-16 a13 13 0 0 0 -26 0 v16 Z" fill="#e6e9f0"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 47.5 q4.5 3.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+            <div><h3>The Watch List</h3><p class="share">11% · moderate non-proliferative</p></div>
+          </div>
+          <dl>
+            <dt>What the image shows</dt><dd>Haemorrhages and venous changes in more than one quadrant. Real disease, not yet threatening the macula.</dd>
+            <dt>The judgement call</dt><dd>This is the grade where interval matters most: too slow and it becomes severe between visits, too fast and it consumes the specialist capacity the last two personas need.</dd>
+            <dt>What they should get</dt><dd>Re-image at 6–12 months against the previous photograph, with blood pressure and lipids treated as part of the eye plan.</dd>
+          </dl>
+          <p class="money"><b>Where the model earns its keep:</b> comparing this year's image with last year's is a machine's job, and it is the difference between a stable watch and a missed progression.</p>
+          <span class="track-tag t-gp">Primary care, ophthalmologist of record</span>
+        </article>
+
+        <article class="card pcard p4" id="r4">
+          <div class="phead">
+            <svg class="avatar av" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#fdf3da"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#3b527d"/><rect x="44" y="52" width="8" height="10" fill="#a06a3f"/><circle cx="48" cy="40" r="17" fill="#a06a3f"/><path d="M31 40 a17 17 0 0 1 34 0 h-6 a11 11 0 0 0 -22 0 Z" fill="#3a2a1c"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 47.5 q4.5 3.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+            <div><h3>The Referable</h3><p class="share">6% · severe non-proliferative</p></div>
+          </div>
+          <dl>
+            <dt>What the image shows</dt><dd>Extensive haemorrhages, venous beading, intraretinal microvascular abnormalities. A high probability of progressing to new vessels within a year.</dd>
+            <dt>What they feel</dt><dd>Nothing. Ray is in this group, reading the paper without glasses.</dd>
+            <dt>What they should get</dt><dd>An ophthalmologist within weeks, with the graded image attached so the appointment starts where the screen finished.</dd>
+          </dl>
+          <p class="money"><b>The whole point of the screen:</b> this persona is invisible to every part of the system that waits for a symptom.</p>
+          <span class="track-tag t-sp">Ophthalmology</span>
+        </article>
+
+        <article class="card pcard p5" id="r5">
+          <div class="phead">
+            <svg class="avatar av" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#fbe9f1"/><path d="M18 96 C18 72 31 61 48 61 C65 61 78 72 78 96 Z" fill="#4a5674"/><rect x="44" y="52" width="8" height="10" fill="#eeb98d"/><circle cx="48" cy="40" r="17" fill="#eeb98d"/><path d="M31 40 a17 17 0 0 1 34 0 h-6 a11 11 0 0 0 -22 0 Z" fill="#5a3b23"/><circle cx="42" cy="41" r="1.8" fill="#201209"/><circle cx="54" cy="41" r="1.8" fill="#201209"/><path d="M43.5 49 q4.5 2.5 9 0" stroke="#201209" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+            <div><h3>Sight-Threatening</h3><p class="share">4% · proliferative disease or macular oedema</p></div>
+          </div>
+          <dl>
+            <dt>What the image shows</dt><dd>New vessels on the disc or elsewhere, or oedema at the centre of vision. The disease is now measured in weeks.</dd>
+            <dt>What treatment exists</dt><dd>Laser and anti-VEGF injections work — and work far better before central vision is lost than after.</dd>
+            <dt>What they should get</dt><dd>An urgent appointment, not a position in a queue sorted by referral date.</dd>
+          </dl>
+          <p class="money"><b>The cost of the wait:</b> this is where a 124-day queue converts a treatable retina into a permanent visual field loss.</p>
+          <span class="track-tag t-sp">Ophthalmology, urgent</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 MECHANISM -->
+  <section id="screen" class="tintband">
+    <div class="wrap reveal">
+      <p class="eyebrow">03 — The mechanism</p>
+      <h2>Move the screen to where the patient already is</h2>
+      <p class="lede">Nothing here requires a new consultation. The patient is in the room for a
+      diabetes review they already booked; the camera is in the room they are already sitting in;
+      the item that pays for it already exists. What changes is that the sorting happens
+      <b>before</b> the referral instead of after it.</p>
+
+      <div class="grid g3" style="margin-top:28px">
+        <div class="card">
+          <span class="num">STEP 1</span>
+          <h3>Capture</h3>
+          <p>Non-mydriatic camera in the treatment room. Two images per eye, no drops, about sixty
+          seconds, delegated to a practice nurse under the GP's direction — exactly as the MBS item
+          already contemplates.</p>
+          <p class="note">Ungradable images are a result, not a failure: they route to mydriasis or
+          to an optometrist, and they are counted.</p>
+        </div>
+        <div class="card">
+          <span class="num">STEP 2</span>
+          <h3>Grade</h3>
+          <p>An autonomous model returns an international grade and a confidence, in the
+          consultation, not in a letter three weeks later. Regulator-cleared systems report roughly
+          <b>87–96% sensitivity</b> and <b>81–91% specificity</b> for more-than-mild retinopathy in
+          pivotal and real-world studies.</p>
+          <p class="note">Sensitivity is deliberately favoured over specificity: the cost of a false
+          positive is one appointment, the cost of a false negative is a retina.</p>
+        </div>
+        <div class="card">
+          <span class="num">STEP 3</span>
+          <h3>Dispose</h3>
+          <p>The output the GP acts on is not a diagnosis — it is a <b>disposition</b>: a
+          destination, an urgency and a date, written into the recall system before the patient
+          stands up.</p>
+          <p class="note">Any symptom — blurring, floaters, sudden change — overrides the grade and
+          is referred regardless.</p>
+        </div>
+      </div>
+
+      <p class="pullquote">“The model does not decide what is wrong with the eye. It decides which
+      eyes an ophthalmologist should be looking at this month.”</p>
+    </div>
+  </section>
+
+  <!-- 04 DISPOSITION -->
+  <section id="disposition">
+    <div class="wrap reveal">
+      <p class="eyebrow">04 — What comes back</p>
+      <h2>Three destinations, not one queue</h2>
+      <p class="lede">Today the pathway has a single exit: a referral. The screen replaces it with
+      three, and the great majority of people take one that does not involve a hospital at all.</p>
+
+      <div class="card" style="margin-top:26px">
+        <div class="scrollwrap"><table>
+          <caption>The disposition returned in the consultation, per 500 patients with diabetes</caption>
+          <thead><tr><th scope="col">Grade</th><th scope="col">Destination</th><th scope="col">Urgency</th><th scope="col">Who holds it</th><th scope="col">People</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">No apparent retinopathy</th><td>Recall system</td><td>24 months</td><td>Practice</td><td>305</td></tr>
+            <tr><th scope="row">Mild non-proliferative</th><td>Recall system</td><td>12 months</td><td>Practice</td><td>90</td></tr>
+            <tr><th scope="row">Moderate non-proliferative</th><td>Recall + control review</td><td>6–12 months</td><td>Practice, named ophthalmologist of record</td><td>55</td></tr>
+            <tr><th scope="row">Severe non-proliferative</th><td>Ophthalmology</td><td>Weeks</td><td>Ophthalmology</td><td>30</td></tr>
+            <tr><th scope="row">Proliferative or macular oedema</th><td>Ophthalmology</td><td>Urgent</td><td>Ophthalmology</td><td>20</td></tr>
+            <tr><th scope="row">Ungradable</th><td>Mydriatic imaging or optometry</td><td>Weeks</td><td>Practice → optometry</td><td>modelled ≤10%</td></tr>
+          </tbody>
+        </table></div>
+        <p class="plus"><b>The referral that does leave the practice is a better referral.</b> It
+        carries the graded image, the grade, the model's confidence and the date of the previous
+        photograph — so the ophthalmologist's appointment begins with a comparison rather than a
+        first look.</p>
+      </div>
+
+      <div class="legend" style="margin-top:22px">
+        <span class="key"><span class="sw v-today"></span>Today — one pathway, sorted by referral date</span>
+        <span class="key"><span class="sw v-pipe"></span>With the screen — three pathways, sorted by risk</span>
+      </div>
+      <div class="card">
+        <div class="brow"><span class="blab">Today</span><span class="btrack"><span class="bfill v-today" style="width:100%"></span><span class="bval">100% — one queue</span></span></div>
+        <div class="brow"><span class="blab">Screened</span><span class="btrack"><span class="bfill v-pipe" style="width:10%"></span><span class="bval">10% — the rest held in primary care</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 OCULOMICS -->
+  <section id="oculomics" class="tintband">
+    <div class="wrap reveal">
+      <p class="eyebrow">05 — The second yield</p>
+      <h2>The only microvessels in the body you can photograph directly</h2>
+      <p class="lede">This section is the speculative one, and it is labelled as such. Once a
+      retinal photograph exists for 90% of a practice's diabetes population, a second question
+      becomes free to ask: what else is in that image? <b>Oculomics</b> — the study of ocular
+      biomarkers of systemic disease — is an active research field, not a clinical service, and
+      nothing in this section should be treated as standard of care.</p>
+
+      <div class="grid g3" style="margin-top:28px">
+        <div class="card">
+          <h3>What is measurable</h3>
+          <p>Vessel calibre, tortuosity, branching angle and fractal dimension are quantifiable
+          from an ordinary fundus photograph, and they change with systemic vascular disease before
+          symptoms appear.</p>
+        </div>
+        <div class="card">
+          <h3>What is being validated</h3>
+          <p>Deep-learning models predicting cardiovascular risk, chronic kidney disease and other
+          systemic conditions from retinal images have reached prospective and pivotal study stage;
+          a regulated retinal cardiovascular risk score has been through a pivotal trial.</p>
+        </div>
+        <div class="card">
+          <h3>Why the marginal cost is zero</h3>
+          <p>The capture already happened for the retinopathy screen. A second read adds compute,
+          not clinic time, not a device, and not another visit for the patient.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:24px">
+        <h3>What it would change in the room</h3>
+        <p>The GP is already doing a chronic-disease review. Today the vascular picture comes from
+        blood pressure, lipids and an absolute-risk calculator built from population averages. A
+        retinal vascular read would add a measurement of <i>this patient's</i> small vessels to that
+        conversation — at the same visit, from an image taken for another purpose.</p>
+        <ul class="contrast">
+          <li class="no">It is not a diagnosis, and it does not start or stop a medication on its own.</li>
+          <li class="no">It is not billed, because no item covers it and none should until the evidence supports one.</li>
+          <li class="yes">It is a research output, consented separately, reported alongside the retinopathy grade and audited against outcomes.</li>
+          <li class="yes">It is the reason to build the imaging base now: the screen justifies itself on sight alone, and the second yield arrives on infrastructure that already paid for itself.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 MONEY -->
+  <section id="money">
+    <div class="wrap reveal">
+      <p class="eyebrow">06 — Align the money</p>
+      <h2>Who pays, who earns, and the part that does not add up yet</h2>
+      <p class="lede">The honest position: the MBS item covers the read, not the camera. Practice
+      economics on the item alone are thin, and pretending otherwise would be the fastest way to
+      lose a room full of practice managers. The return is at system level, and the capital needs a
+      program.</p>
+
+      <div class="grid g3" style="margin-top:28px;align-items:stretch">
+        <div class="card tile">
+          <p class="tlabel">Practice billing per two-year cycle, 500 patients at 90% coverage</p>
+          <p class="tvalue">$26.9k</p>
+          <p class="tdelta">450 screens × <span class="up">$59.75</span> — up from ~$14.9k at 50% coverage</p>
+        </div>
+        <div class="card tile">
+          <p class="tlabel">Ophthalmology appointments returned per 1,000 diabetes referrals</p>
+          <p class="tvalue">610</p>
+          <p class="tdelta">Clear retinas that never needed the visit, at $103.95 each</p>
+        </div>
+        <div class="card tile">
+          <p class="tlabel">Median wait for the sight-threatening referral</p>
+          <p class="tvalue">124 → 35 days</p>
+          <p class="tdelta"><span class="up">−72%</span> once the clear retinas leave the queue</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:24px">
+        <h3>The ledger, stated plainly</h3>
+        <ul class="mathlist">
+          <li><b>Practice, per two-year cycle:</b> 450 screens × $59.75 = <b>$26,887</b>, against
+          ~$14,937 at today's coverage — about <b>+$6k a year</b> in new billing.</li>
+          <li><b>Practice, against capital:</b> a non-mydriatic camera is a five-figure purchase and
+          the model licence is per read. On the item alone the payback is slow, which is why this is
+          proposed as a <b>program-funded</b> device, not a practice investment.</li>
+          <li><b>Ophthalmology, per 1,000 diabetes referrals:</b> 610 appointments at $103.95 =
+          <b>$63,410</b> of specialist time currently spent confirming that a retina is normal.</li>
+          <li><b>The system:</b> those 610 slots absorb the referable and sight-threatening
+          referrals that are currently queued behind them — the wait falls without a single new
+          ophthalmologist.</li>
+          <li><b>Medicare:</b> pays <i>more</i> in screening items and less in avoidable specialist
+          attendances, and buys detection in the 40% of the population who are currently not imaged
+          at all. As in Explainer 01, this is a throughput trade, argued as one.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 LIVE MODEL -->
+  <section id="model" class="tintband">
+    <div class="wrap reveal">
+      <p class="eyebrow">07 — Run it yourself</p>
+      <h2>The yield model</h2>
+      <p class="lede">The same arithmetic as the cards above, with the assumptions in your hands.
+      Defaults reproduce the figures on this page.</p>
+
+      <div class="card" id="yield" style="margin-top:24px">
+        <h3>Move the assumptions</h3>
+        <p class="note" style="margin:2px 0 0">Defaults reproduce the figures above. Everything stays
+        indicative; the trial replaces it with measurement.</p>
+        <div class="msplit">
+          <div>
+            <div class="mrow">
+              <div class="mtop"><label for="mPop">People with diabetes in the practice</label><output id="oPop">500</output></div>
+              <input type="range" id="mPop" min="200" max="1200" step="50" value="500">
+            </div>
+            <div class="mrow">
+              <div class="mtop"><label for="mC0">Imaged today, per two-year cycle</label><output id="oC0">50%</output></div>
+              <input type="range" id="mC0" min="30" max="70" step="1" value="50">
+            </div>
+            <div class="mrow">
+              <div class="mtop"><label for="mC1">Imaged with a camera in the room</label><output id="oC1">90%</output></div>
+              <input type="range" id="mC1" min="70" max="98" step="1" value="90">
+            </div>
+            <div class="mrow">
+              <div class="mtop"><label for="mSens">Model sensitivity for referable disease</label><output id="oSens">95%</output></div>
+              <input type="range" id="mSens" min="85" max="98" step="1" value="95">
+            </div>
+            <button class="mreset" id="mReset" type="button">Reset to defaults</button>
+          </div>
+          <div class="mouts" aria-live="polite">
+            <div class="tile"><p class="tlabel">People imaged per two-year cycle</p><p class="tvalue" id="rImaged">450</p></div>
+            <div class="tile"><p class="tlabel">Newly imaged — nobody was looking before</p><p class="tvalue" id="rNew">200</p></div>
+            <div class="tile"><p class="tlabel">Sight-threatening disease found</p><p class="tvalue" id="rSt">43</p></div>
+            <div class="tile"><p class="tlabel">…of which today's coverage would have missed</p><p class="tvalue" id="rMissed">19</p></div>
+            <div class="tile"><p class="tlabel">Clear retinas given an interval, not a referral</p><p class="tvalue" id="rClear">275</p></div>
+            <div class="tile"><p class="tlabel">Practice billing per cycle (MBS 12326)</p><p class="tvalue" id="rBill">$26.9k</p></div>
+          </div>
+        </div>
+        <p class="note" style="margin-top:14px">Prevalence held at the National Eye Health Survey
+        40+ estimates — any retinopathy 39%, sight-threatening 10%. Grading of the people already
+        imaged today is assumed to be as sensitive as the model, so the “missed” figure is driven by
+        coverage, not by grading quality.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 TRIAL -->
+  <section id="trial">
+    <div class="wrap reveal">
+      <p class="eyebrow">08 — Ask small</p>
+      <h2>One primary health network, twelve months</h2>
+      <p class="lede">Enough practices to see a coverage effect and enough images to audit the model
+      against a masked human grade. The trial is designed to measure the two things that would kill
+      the idea: a false-negative rate that lets sight-threatening disease through, and a device that
+      performs unequally across the population it screens.</p>
+
+      <div class="grid g2" style="margin-top:26px">
+        <div class="card">
+          <h3>The ask</h3>
+          <p class="hero-fig">$520<small>k</small></p>
+          <ul class="mathlist">
+            <li>12 general practices in one PHN, ~6,000 people with diabetes</li>
+            <li><b>$288k</b> — 12 non-mydriatic cameras at ~$24k, program-funded, retained by the practices</li>
+            <li><b>$43k</b> — autonomous grading licence, per read, plus a 20% masked audit sample</li>
+            <li><b>$120k</b> — practice nurse training, recall configuration, and a named ophthalmologist of record per practice</li>
+            <li><b>$69k</b> — independent evaluation, including performance by subgroup</li>
+          </ul>
+          <p class="plus"><b>The capital is the ask.</b> The item pays for the read; it does not pay
+          for the camera. That is the honest gap this trial exists to close.</p>
+        </div>
+        <div class="card">
+          <h3>Eight KPIs</h3>
+          <ul class="mathlist">
+            <li>Screening coverage <b>≥85%</b> of the practice diabetes population in 12 months</li>
+            <li>Ungradable image rate <b>≤10%</b>, all with a completed alternative pathway</li>
+            <li>Model sensitivity for referable disease <b>≥90%</b> against masked ophthalmologist grading</li>
+            <li>Specificity <b>≥80%</b> on the same audit sample</li>
+            <li>Median image-to-ophthalmology time for sight-threatening grades <b>≤42 days</b></li>
+            <li>Share of new eye-clinic diabetes referrals that are grade 2 or worse <b>≥70%</b></li>
+            <li>The false-negative check: <b>no</b> sight-threatening disease at the 12-month re-screen in anyone the model graded “no retinopathy” at baseline</li>
+            <li>Coverage among Aboriginal and Torres Strait Islander patients <b>at or above</b> the overall rate</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 RISKS -->
+  <section id="risks" class="tintband">
+    <div class="wrap reveal">
+      <p class="eyebrow">09 — What could go wrong</p>
+      <h2>Six risks, six safeguards</h2>
+      <div class="grid g2" style="margin-top:24px">
+        <div class="card risk"><h3>The model misses disease</h3><p><b>Safeguard:</b> any visual symptom is referred regardless of grade; sensitivity is favoured over specificity at the threshold; a 20% sample is graded blind by an ophthalmologist every month; everyone is re-imaged on schedule, so a miss has a second chance rather than a lifetime.</p></div>
+        <div class="card risk"><h3>It performs worse for some patients than others</h3><p><b>Safeguard:</b> device chosen on published subgroup performance; accuracy reported by ethnicity, age and image quality quarterly; the equity KPI is coverage <i>and</i> accuracy, not coverage alone; local audit before any scale-up.</p></div>
+        <div class="card risk"><h3>Ungradable images become silent failures</h3><p><b>Safeguard:</b> ungradable is a disposition with a date, not a null result. It routes to mydriatic imaging or optometry and is counted in the coverage denominator, so a practice cannot improve its numbers by discarding hard images.</p></div>
+        <div class="card risk"><h3>Over-referral floods the eye clinic</h3><p><b>Safeguard:</b> thresholds are set jointly with the receiving department and reconciled monthly against what the ophthalmologist actually found; the department can move the threshold, and sees the effect on its own list.</p></div>
+        <div class="card risk"><h3>Automation bias de-skills the GP</h3><p><b>Safeguard:</b> the image is displayed to the clinician, not just the grade; the output is a disposition rather than a diagnosis; each practice has a named ophthalmologist of record for questions; the model's confidence is shown, and low confidence behaves like ungradable.</p></div>
+        <div class="card risk"><h3>The images become a data asset</h3><p><b>Safeguard:</b> images live in the practice's clinical record under the patient's consent; no secondary use without explicit, separate, revocable consent; the oculomics read in §05 is investigational, separately consented, and never drives treatment on its own.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 SCALE -->
+  <section id="scale">
+    <div class="wrap reveal">
+      <p class="eyebrow">10 — If it works</p>
+      <h2>Per 100,000 people with diabetes</h2>
+      <p class="lede">Stated per 100,000 rather than nationally, so no workforce number is invented.
+      At the modelled prevalence, moving coverage from about half to 90% is the whole of the effect.</p>
+      <div class="grid g4" style="margin-top:26px">
+        <div class="card tile"><p class="tlabel">Additional people imaged per cycle</p><p class="tvalue">40,000</p><p class="tdelta">50% → 90% coverage</p></div>
+        <div class="card tile"><p class="tlabel">Sight-threatening disease found in that group</p><p class="tvalue">~3,800</p><p class="tdelta">10% prevalence × 95% sensitivity</p></div>
+        <div class="card tile"><p class="tlabel">Clear retinas given an interval instead of an appointment</p><p class="tvalue">54,900</p><p class="tdelta">61% of 90,000 imaged</p></div>
+        <div class="card tile"><p class="tlabel">Screening items paid, per cycle</p><p class="tvalue">$5.4M</p><p class="tdelta">90,000 × $59.75 — the cost side, stated openly</p></div>
+      </div>
+      <p class="note" style="margin-top:18px">The trade is explicit: Medicare pays roughly $5.4M more
+      in screening per 100,000 people per cycle, and buys the detection of about 3,800 people whose
+      sight-threatening retinopathy is currently invisible to the system, plus the specialist
+      capacity released by 54,900 avoided appointments.</p>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:80px">
+    <div class="card hubcard" style="flex-direction:row;align-items:center;gap:18px;flex-wrap:wrap">
+      <div style="flex:1;min-width:240px">
+        <span class="num">THE SET</span>
+        <h3 style="font-size:20px;margin:6px 0 4px">Three explainers, one method</h3>
+        <p class="defs"><b class="term">01</b> screens the referral for complexity ·
+        <b class="term">02</b> matches the patient to the clinician ·
+        <b class="term">03</b> screens the retina before the referral exists.</p>
+      </div>
+      <a class="pill" href="index.html">All three →</a>
+      <a class="pill ghost" href="executive-summary.html">One-page summary →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="fbrand">CARE PERSONAS</p>
+    <p>Explainer 03 of three. All figures indicative; prevalence modelled on the National Eye Health
+    Survey's estimates for Australian adults aged 40 and over with diagnosed diabetes. Autonomous
+    diabetic-retinopathy grading accuracy quoted from regulator-cleared devices' pivotal and
+    real-world studies. The oculomics layer is research-stage and is not offered as clinical
+    practice. All demo clinicians and patients are fictional.</p>
+    <p><a href="index.html">Home</a> · <a href="specialist-gp-pipeline.html">Explainer 01</a> ·
+    <a href="matched-family-gp.html">Explainer 02</a> ·
+    <a href="executive-summary.html">Executive summary</a></p>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script src="assets/dotfield.js"></script>
+<script>
+/* ============================================================
+   EXPLAINER 03 — the retinal screen theatre.
+   200 figures = one practice's diabetes population, grouped by
+   international retinopathy grade. The story: nobody can feel it,
+   half are never imaged, the ones who are referred all land in one
+   queue — then image everyone where they already are and the queue
+   becomes the tenth who need it.
+   ============================================================ */
+(function () {
+  if (!window.DotField) return;
+
+  // shares of 200, modelled on NEHS 40+ (any DR 39%, sight-threatening 10%)
+  var COUNTS = [122, 36, 22, 12, 8];
+  var HUES = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4'];
+  var NAMES = ['Clear retina', 'Early signal', 'Watch list', 'Referable', 'Sight-threatening'];
+  var CLEAR = 0, EARLY = 1, WATCH = 2, REFER = 3, SIGHT = 4;
+  var ALL5 = [0, 1, 2, 3, 4];
+  var SPECIALIST = [REFER, SIGHT];              // the tenth who need an ophthalmologist
+
+  // Ray: the first of the referable group — severe disease, no symptoms
+  var RAY = { g: REFER, i: 0 };
+
+  function jitter(c, pts) {
+    var m = Math.min(c.W, c.H);
+    for (var i = 0; i < c.N; i++) {
+      pts[i] = [pts[i][0] + c.jit[i][0] * m * 0.028, pts[i][1] + c.jit[i][1] * m * 0.028];
+    }
+    return pts;
+  }
+  function crowdPos(c, pitch, seed) {
+    return jitter(c, c.phyllo(c.W * 0.5, c.H * 0.5, c.N, c.U * pitch, seed || 0));
+  }
+  function members(c, want) {
+    var out = [];
+    for (var d = 0; d < c.N; d++) if (want.indexOf(c.groups[d]) >= 0) out.push(d);
+    return out;
+  }
+  function packInto(c, pos, centre, list, seed, pitch) {
+    var pts = c.phyllo(centre[0], centre[1], list.length, c.U * (pitch || 1.55), seed);
+    for (var i = 0; i < list.length; i++) pos[list[i]] = pts[i];
+    return pts.radius;
+  }
+
+  /* ---- the five strata, a 3-over-2 grid so both axes of the box fill.
+         Group 0 is fifteen times group 4, so the discs are deliberately
+         unequal — that inequality IS the argument. ---- */
+  function slots(c) {
+    return c.narrow
+      ? [[0.46, 0.10], [0.46, 0.33], [0.46, 0.54], [0.46, 0.73], [0.46, 0.91]]
+      : [[0.20, 0.31], [0.53, 0.27], [0.82, 0.27], [0.36, 0.72], [0.66, 0.72]];
+  }
+  function strataLayout(c, labelled) {
+    var pitch = c.narrow ? 1.30 : 1.55;
+    var pos = new Array(c.N), L = [], S = slots(c);
+    for (var g = 0; g < 5; g++) {
+      var cx = S[g][0] * c.W, cy = S[g][1] * c.H;
+      var pts = c.phyllo(cx, cy, COUNTS[g], c.U * pitch, g * 13);
+      var gi = 0;
+      for (var d = 0; d < c.N; d++) if (c.groups[d] === g) pos[d] = pts[gi++];
+      if (labelled) {
+        var off = pts.radius + (c.narrow ? 14 : 20);
+        L.push({ x: cx, y: cy + off, group: g, dy: off,
+                 text: (c.narrow ? NAMES[g] : NAMES[g] + ' · ' + Math.round(COUNTS[g] * 100 / c.N) + '%') });
+      }
+    }
+    return { pos: pos, meta: { labels: L } };
+  }
+
+  /* ---- the eye clinic list: a short vertical queue, two abreast, on a comfortable
+         fixed pitch and vertically centred — so twenty people read as a short
+         column rather than a compressed ribbon, and the ophthalmologist stands
+         beside it the way the GP stands beside the pools. ---- */
+  function queue(c, list, cx, cy) {
+    var pitch = c.U * 2.15, rows = Math.ceil(list.length / 2);
+    var top = cy - (rows * pitch) / 2, pts = [];
+    for (var i = 0; i < list.length; i++) {
+      pts.push([cx + (i % 2 === 0 ? -c.U * 0.85 : c.U * 0.85),
+                top + pitch * (Math.floor(i / 2) + 0.5)]);
+    }
+    pts.top = top; pts.h = rows * pitch;
+    return pts;
+  }
+  function queueChrome(c, cx, top, sub) {
+    return [{ x: cx, y: top - 32, text: 'THE EYE CLINIC LIST', big: true },
+            { x: cx, y: top - 14, text: sub, muted: true }];
+  }
+
+  // referral order today: undifferentiated, so grades interleave down the list
+  function mixedRanks(c) {
+    var ranks = {}, buckets = [[], [], [], [], []], r = 0;
+    for (var d = 0; d < c.N; d++) buckets[c.groups[d]].push(d);
+    var cursor = [0, 0, 0, 0, 0], total = c.N;
+    // deal round-robin in proportion, so the list looks like arrival order
+    while (r < total) {
+      for (var g = 0; g < 5; g++) {
+        var take = Math.max(1, Math.round(COUNTS[g] / 20));
+        for (var k = 0; k < take && cursor[g] < buckets[g].length; k++) {
+          ranks[buckets[g][cursor[g]++]] = r++;
+        }
+      }
+      if (cursor[0] >= buckets[0].length && cursor[1] >= buckets[1].length &&
+          cursor[2] >= buckets[2].length && cursor[3] >= buckets[3].length &&
+          cursor[4] >= buckets[4].length) break;
+    }
+    return ranks;
+  }
+
+  var layouts = {
+    crowd: function (c) { return { pos: crowdPos(c, 2.0, 0), meta: { labels: [] } }; },
+    wide: function (c) { return { pos: crowdPos(c, 2.5, 7), meta: { labels: [] } }; },
+    strata: function (c) { return strataLayout(c, true); },
+
+    // Today: everyone referred lands on one list, in arrival order. Two hundred
+    // people is a room, not a rail — a grid fills both axes of the box and lets
+    // the interleaved colours show that nothing has been sorted.
+    unsorted: function (c) {
+      var pos = new Array(c.N), ranks = mixedRanks(c);
+      var cols = c.narrow ? 9 : 15;
+      var bw = c.W * (c.narrow ? 0.86 : 0.72), bh = c.H * (c.narrow ? 0.62 : 0.74);
+      var bx = c.narrow ? c.W * 0.52 : c.W * 0.60, by = c.H * (c.narrow ? 0.62 : 0.56);
+      var rows = Math.ceil(c.N / cols);
+      var px = bw / cols, py = bh / rows;
+      for (var d in ranks) {
+        var r = +ranks[d], col = r % cols, row = Math.floor(r / cols);
+        pos[d] = [bx - bw / 2 + px * (col + 0.5), by - bh / 2 + py * (row + 0.5)];
+      }
+      var doc = { x: bx - bw / 2 - c.U * (c.narrow ? 3.0 : 5.2), y: by - bh * 0.30,
+                  skin: 2, hair: 0, label: c.narrow ? 'eye clinic' : 'the ophthalmologist' };
+      return { pos: pos, meta: {
+        labels: [{ x: bx, y: by - bh / 2 - 30, text: 'THE EYE CLINIC LIST', big: true },
+                 { x: bx, y: by - bh / 2 - 12,
+                   text: c.narrow ? 'unsorted — in arrival order' : 'unsorted — in the order the referrals arrived',
+                   muted: true }],
+        clinicians: c.narrow ? [] : [doc],
+        zones: [{ rx: bx - bw / 2 - c.U * 1.1, ry: by - bh / 2 - c.U * 0.8,
+                  rw: bw + c.U * 2.2, rh: bh + c.U * 1.6,
+                  rad: c.U * 2.0, color: '#1c5cab', alpha: 0.05 }]
+      } };
+    },
+
+    // the capture: everybody imaged in the room they were already in
+    capture: function (c) {
+      var pos = new Array(c.N);
+      var centre = [0.52 * c.W, 0.52 * c.H];
+      var r = packInto(c, pos, centre, members(c, ALL5), 0, c.narrow ? 1.55 : 1.85);
+      return { pos: pos, meta: {
+        labels: [{ x: centre[0], y: centre[1] - r - 30, text: 'THE TREATMENT ROOM', big: true },
+                 { x: centre[0], y: centre[1] - r - 12,
+                   text: 'imaged at the visit they already made', muted: true }],
+        clinicians: [{ x: centre[0] - r - c.U * 3.2, y: centre[1] - c.U, skin: 3, hair: 1, label: 'the GP' }],
+        zones: [{ x: centre[0], y: centre[1], r: r + c.U * 2.4, color: '#86b6ef', alpha: 0.10 }]
+      } };
+    },
+
+    // three destinations instead of one queue: interval, recall, ophthalmology
+    dispose: function (c) {
+      var pos = new Array(c.N);
+      // desktop puts the three destinations side by side; a phone has no room
+      // for that, so they stack down the centre and the clinicians step out
+      var qx = c.narrow ? 0.50 * c.W : 0.15 * c.W, qy = c.narrow ? 0.20 * c.H : 0.50 * c.H;
+      var iv = [c.narrow ? 0.50 * c.W : 0.64 * c.W, c.narrow ? 0.52 * c.H : 0.27 * c.H];
+      var rc = [c.narrow ? 0.50 * c.W : 0.64 * c.W, c.narrow ? 0.84 * c.H : 0.73 * c.H];
+      var rIv = packInto(c, pos, iv, members(c, [CLEAR]), 0, c.narrow ? 1.20 : 1.40);
+      var rRc = packInto(c, pos, rc, members(c, [EARLY, WATCH]), 3, c.narrow ? 1.25 : 1.45);
+      var spec = members(c, SPECIALIST);
+      var q = queue(c, spec, qx, qy);
+      for (var i = 0; i < spec.length; i++) pos[spec[i]] = q[i];
+      // both clinicians stand BESIDE their crowd, never on top of it
+      // offset as a share of the box, not a multiple of U, so the name never
+      // reaches the column however large the figures get
+      var doc = { x: qx - 0.13 * c.W, y: qy - c.U * 1.2, skin: 2, hair: 0,
+                  label: 'the ophthalmologist' };
+      var gp = { x: iv[0] - Math.max(rIv, rRc) - c.U * 3.6, y: (iv[1] + rc[1]) / 2,
+                 skin: 3, hair: 1, label: 'the GP' };
+      return { pos: pos, meta: {
+        labels: queueChrome(c, qx, q.top, c.narrow ? 'referable only' : 'referable and sight-threatening only').concat([
+          { x: iv[0], y: iv[1] + rIv + 22, group: CLEAR, dy: rIv + 22,
+            text: c.narrow ? 'INTERVAL · 24 months' : 'INTERVAL · re-image in 24 months', big: true },
+          { x: rc[0], y: rc[1] + rRc + 22, group: WATCH, dy: rRc + 22,
+            text: c.narrow ? 'RECALL · 6–12 months' : 'RECALL · re-image in 6–12 months', big: true }]),
+        clinicians: c.narrow ? [] : [doc, gp],
+        zones: [{ rx: qx - c.U * 2.4, ry: q.top - c.U * 0.8, rw: c.U * 4.8, rh: q.h + c.U * 1.6,
+                  rad: c.U * 2.4, color: '#1c5cab', alpha: 0.055 },
+                { x: iv[0], y: iv[1], r: rIv + c.U * 2.2, color: '#2a78d6', alpha: 0.07 },
+                { x: rc[0], y: rc[1], r: rRc + c.U * 2.2, color: '#1baf7a', alpha: 0.07 }]
+      } };
+    }
+  };
+
+  // roughly half the population, spread evenly across every grade: the people
+  // who have no retinal image at all in a two-year window
+  function UNIMAGED(d) { return (d * 7) % 10 < 5; }
+
+  DotField({
+    theatre: '#story', canvas: '#df3',
+    counts: COUNTS,
+    groupColors: HUES,
+    neutral: '#b6c0cf', ink: '#1b2846', ink2: '#4a5674', accent: '#eb6834',
+    labels: NAMES,
+    layouts: layouts,
+    rmScene: 17,
+    scenes: (function () {
+      // Ray's dot index depends only on the group sizes, so it can be resolved here
+      var rayIdx = (function () { var n = 0; for (var g = 0; g < REFER; g++) n += COUNTS[g]; return n; })();
+      var notRay = function (d) { return d !== rayIdx; };
+      var trio = [rayIdx,
+                  (function () { var n = 0; for (var g = 0; g < CLEAR; g++) n += COUNTS[g]; return n + 4; })(),
+                  (function () { var n = 0; for (var g = 0; g < EARLY; g++) n += COUNTS[g]; return n + 3; })()];
+      var notTrio = function (d) { return trio.indexOf(d) < 0; };
+      var RAY_LINES = ['Sees fine — reads the paper without glasses',
+                       'No symptoms of any kind',
+                       'Last retinal photograph: three years ago',
+                       'Referral expired in a kitchen drawer'];
+      return [
+        { key: 'crowd' },
+        { key: 'wide' },
+        { key: 'crowd', focus: RAY, fadeDot: notRay, fadeTo: 0.11,
+          cam: { on: 'focus', z: 4.2 }, camNarrow: { on: 'focus', z: 4.0 } },
+        { key: 'crowd', focus: RAY, fadeDot: notRay, fadeTo: 0.11,
+          cam: { on: 'focus', z: 4.2, dx: 4 }, camNarrow: { on: 'focus', z: 4.0, dx: 4 },
+          cards: [{ at: RAY, title: 'Ray, 62', sub: 'type 2 diabetes · nine years',
+                    mark: 'want', rows: RAY_LINES }],
+          cardsNarrow: [{ at: RAY, small: true, title: 'Ray, 62', mark: 'want', rows: RAY_LINES }] },
+        { key: 'crowd', fadeDot: notTrio, fadeTo: 0.42,
+          cam: { z: 1.25, x: 0.5, y: 0.5 }, camNarrow: { z: 1.0, x: 0.5, y: 0.5 },
+          cards: [
+            { at: { g: CLEAR, i: 4 }, small: true, side: 'left', mark: 'want',
+              rows: ['The clinic is forty minutes away'] },
+            { at: { g: EARLY, i: 3 }, small: true, mark: 'want',
+              rows: ['The appointment clashed with a shift'] }
+          ],
+          cardsNarrow: [{ at: { g: EARLY, i: 3 }, small: true, mark: 'want',
+              rows: ['Everyone has a reason, and none of them are laziness'] }] },
+        { key: 'crowd', colorGroups: 'all', scan: { groups: 'all', axis: 'x' } },
+        { key: 'strata', colorGroups: 'all', labels: true },
+        { key: 'strata', colorGroups: 'all', labels: true, dim: { keep: [CLEAR], to: 0.20 } },
+        { key: 'strata', colorGroups: 'all', labels: true, dim: { keep: SPECIALIST, to: 0.20 } },
+        // today: half the population has no image at all
+        { key: 'strata', colorGroups: 'all', labels: true,
+          greyDot: UNIMAGED, fadeDot: UNIMAGED, fadeTo: 0.30 },
+        { key: 'unsorted', colorGroups: 'all', labels: true },
+        { key: 'unsorted', colorGroups: 'all', labels: true, dim: { keep: [CLEAR], to: 0.22 },
+          cards: [{ at: { g: CLEAR, i: 70 }, title: 'What fills the clinic', mark: 'cross',
+                    sub: 'six in ten of the new diabetes list',
+                    rows: ['A retina with nothing on it',
+                           'A three-minute look confirming that',
+                           'An appointment slot that cannot be reused'] }],
+          cardsNarrow: [{ at: { g: CLEAR, i: 70 }, small: true, mark: 'cross',
+                    rows: ['Six in ten of the list: nothing to find'] }] },
+        { key: 'unsorted', colorGroups: 'all', labels: true, dim: { keep: [SIGHT], to: 0.22 },
+          cards: [{ at: { g: SIGHT, i: 5 }, side: 'left', title: 'What the wait costs', mark: 'cross',
+                    sub: '124 days to a first appointment',
+                    rows: ['New vessels grow on a timescale of weeks',
+                           'Macular oedema thickens while the letter is filed',
+                           'Vision lost before treatment is vision not recovered'] }],
+          cardsNarrow: [{ at: { g: SIGHT, i: 5 }, small: true, mark: 'cross',
+                    rows: ['124 days, in a disease measured in weeks'] }] },
+        // back to Ray, now graded
+        { key: 'unsorted', colorGroups: 'all', focus: RAY, fadeDot: notRay, fadeTo: 0.13,
+          cam: { on: 'focus', z: 2.4, dx: 4 }, camNarrow: { on: 'focus', z: 1.9, dx: 5 },
+          cards: [{ at: RAY, side: 'left', title: "Ray's retina", mark: 'cross',
+                    sub: 'severe non-proliferative, both eyes',
+                    rows: ['Three years since the last photograph',
+                           'Still no symptoms he can name',
+                           'High chance of new vessels within a year'] }],
+          cardsNarrow: [{ at: RAY, small: true, mark: 'cross', title: "Ray's retina",
+                    rows: ['Severe disease. No symptoms.'] }] },
+        // the mechanism
+        { key: 'capture', colorGroups: 'all', labels: true },
+        { key: 'capture', colorGroups: 'all', labels: true, focus: RAY, dim: { keep: [], to: 0.30 },
+          cam: { on: 'focus', z: 2.0, dx: 5 }, camNarrow: { on: 'focus', z: 1.7, dx: -3 },
+          cards: [{ at: RAY, side: 'right', title: 'What comes back', mark: 'tick',
+                    sub: 'a disposition, not a diagnosis',
+                    rows: ['Grade: severe non-proliferative',
+                           'Destination: ophthalmology',
+                           'Urgency: weeks, not months',
+                           'Image attached to the referral'] }],
+          cardsNarrow: [{ at: RAY, small: true, mark: 'tick', title: 'What comes back',
+                    rows: ['Grade, destination, date'] }] },
+        { key: 'dispose', colorGroups: 'all', labels: true },
+        { key: 'dispose', colorGroups: 'all', labels: true, dim: { keep: SPECIALIST, to: 0.28 } },
+        // the second yield
+        { key: 'dispose', colorGroups: 'all', labels: true, dim: { keep: [CLEAR], to: 0.30 },
+          cards: [{ at: { g: CLEAR, i: 60 }, side: 'left', title: 'The second yield', mark: 'tick',
+                    sub: 'research-stage, from the image already taken',
+                    rows: ['Vessel calibre, tortuosity and branching',
+                           'A cardiovascular and kidney risk signal',
+                           'No extra capture, no extra visit'] }],
+          cardsNarrow: [{ at: { g: CLEAR, i: 60 }, small: true, mark: 'tick', title: 'The second yield',
+                    rows: ['The same image, read again'] }] },
+        { key: 'dispose', colorGroups: 'all', dim: { keep: [], to: 0.15 } }
+      ];
+    })()
+  });
+})();
+
+/* Yield model — the arithmetic of §06, in the reader's hands.
+   Prevalence held at the NEHS 40+ estimates used throughout: no retinopathy
+   61%, sight-threatening (severe NPDR + proliferative + macular oedema) 10%.
+   MBS 12326 schedule fee $59.75; specialist initial attendance (104) $103.95. */
+(function () {
+  var root = document.getElementById('yield');
+  if (!root) return;
+  var DEF = { pop: 500, c0: 50, c1: 90, sens: 95 };
+  var P_CLEAR = 0.61, P_SIGHT = 0.10, FEE = 59.75;
+
+  var el = function (id) { return document.getElementById(id); };
+  var ids = ['mPop', 'mC0', 'mC1', 'mSens'];
+
+  function money(v) {
+    return v >= 1000 ? '$' + (v / 1000).toFixed(1) + 'k' : '$' + Math.round(v);
+  }
+  function calc() {
+    var pop = +el('mPop').value, c0 = +el('mC0').value / 100;
+    var c1 = +el('mC1').value / 100, s = +el('mSens').value / 100;
+    if (c1 < c0) { c1 = c0; el('mC1').value = Math.round(c0 * 100); }
+
+    var imaged = Math.round(pop * c1);
+    var newly = Math.round(pop * (c1 - c0));
+    var sight = Math.round(imaged * P_SIGHT * s);
+    var missed = Math.round(newly * P_SIGHT * s);
+    var clear = Math.round(imaged * P_CLEAR);
+
+    el('oPop').textContent = pop;
+    el('oC0').textContent = Math.round(c0 * 100) + '%';
+    el('oC1').textContent = Math.round(c1 * 100) + '%';
+    el('oSens').textContent = Math.round(s * 100) + '%';
+
+    el('rImaged').textContent = imaged.toLocaleString();
+    el('rNew').textContent = newly.toLocaleString();
+    el('rSt').textContent = sight.toLocaleString();
+    el('rMissed').textContent = missed.toLocaleString();
+    el('rClear').textContent = clear.toLocaleString();
+    el('rBill').textContent = money(imaged * FEE);
+  }
+  ids.forEach(function (id) { el(id).addEventListener('input', calc); });
+  el('mReset').addEventListener('click', function () {
+    el('mPop').value = DEF.pop; el('mC0').value = DEF.c0;
+    el('mC1').value = DEF.c1; el('mSens').value = DEF.sens; calc();
+  });
+  calc();
+})();
+</script>
+</body>
+</html>
