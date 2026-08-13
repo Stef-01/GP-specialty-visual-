@@ -45,7 +45,8 @@ const PAGES = [
   // scan: scene whose arrival sweep must be complete at rest
   // parks: transitions to interrupt (park at scene + 0.6 -> must settle on scene + 1)
   { file: 'specialist-gp-pipeline.html', scan: 9, minChroma: 0.15, parks: QUICK ? [13] : [0, 3, 6, 9, 13, 16] },
-  { file: 'matched-family-gp.html',      scan: 5, minChroma: 0.25, parks: QUICK ? [14] : [0, 3, 7, 10, 14, 18] }
+  { file: 'matched-family-gp.html',      scan: 5, minChroma: 0.25, parks: QUICK ? [14] : [0, 3, 7, 10, 14, 18] },
+  { file: 'retinal-screen.html',         scan: 5, minChroma: 0.25, parks: QUICK ? [16] : [0, 4, 9, 12, 16, 18] }
 ];
 const VIEWPORTS = QUICK ? [[2000, 950]] : [[390, 844], [1280, 800], [2000, 950]];
 

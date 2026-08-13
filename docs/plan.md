@@ -466,6 +466,48 @@ dependency: Google Fonts. Canonical home: https://github.com/Stef-01/GP-specialt
   Re-checked and holding: scene counts (18 / 20), persona shares summing to 100 in both segmented
   bars, and the trial arithmetic ($460k + $380k = $840k; 8-month payback; 127 → 55 days = −57%).
 
+- **Explainer 03 — The Sight-Saving Screen (`retinal-screen.html`, v5, 2026-08-12).** A third
+  explainer completing the method: 01 screens the referral for complexity, 02 matches the patient to
+  the clinician, 03 screens the retina *before a referral exists*.
+  **Argument:** diabetic retinopathy is common, treatable and symptomless until late, so the referral
+  queue is sorted by who managed to keep an appointment rather than by whose sight is at risk. Put an
+  AI-assisted non-mydriatic camera in the GP treatment room, grade every image in the consultation,
+  and return a **disposition** (destination + urgency + date) rather than a diagnosis.
+  **Personas — five retinal strata**, which are the international grading scale rather than an
+  invented taxonomy, sized on the National Eye Health Survey's estimates for Australian adults 40+
+  with diagnosed diabetes (any retinopathy 39%, sight-threatening 10%): Clear Retina 61% · Early
+  Signal (mild NPDR) 18% · Watch List (moderate NPDR) 11% · Referable (severe NPDR) 6% ·
+  Sight-Threatening (proliferative or macular oedema) 4%. 90% stay in primary care on an interval or
+  a recall; 10% go to ophthalmology.
+  **Grounding (checked against source, not asserted):** MBS **12326** (all patients, 24-monthly) and
+  **12325** (Aboriginal and Torres Strait Islander patients, 12-monthly) already pay a **$59.75**
+  schedule fee for visual acuity plus bilateral non-mydriatic retinal photography with analysis and
+  reporting, performed by the practitioner managing the patient's glycaemia — so unlike Explainer
+  01's eConsult, **this mechanism needs no new item**, which is the strongest thing about the ask.
+  Specialist attendances 104 ($103.95) and 105 ($52.25). Regulator-cleared autonomous grading reports
+  ~87–96% sensitivity and ~81–91% specificity for more-than-mild retinopathy across pivotal and
+  real-world studies. Australian screening coverage ~50% in a two-year window; median 124-day wait
+  for a public diabetic-retinopathy referral.
+  **The speculative layer is fenced off.** §05 covers oculomics — vessel calibre, tortuosity and
+  branching read from the same photograph for cardiovascular and kidney risk — and says plainly, in
+  the hero note, the section itself and the footer, that it is research-stage, unbilled, separately
+  consented and never treatment-driving on its own. Its argument is economic rather than clinical:
+  the capture already happened, so the second read costs compute, not clinic time.
+  **Theatre (20 scenes)** follows the house pattern of one person before the population: Ray, 62,
+  nine years into type 2, reading the paper without glasses and three years unimaged — who turns out
+  to be in the referable 6%. New layouts: a **waiting-room grid** for today's undifferentiated eye
+  clinic list (two hundred people is a room, not a rail — a 15-column block fills both axes and the
+  interleaved colours show nothing has been sorted), a **capture** pool in the treatment room, and a
+  **three-destination** composition where a twenty-person queue sits beside two large primary-care
+  pools. On phones the three destinations stack down the centre and the named clinicians step out,
+  because at 11px figures a name costs more than it earns.
+  **Composition verified by rendering, not by assertion:** every resting scene captured at 1440 and
+  390 and measured for ink, top-half share and bounding box. Four defects found and fixed that way —
+  a queue whose inherited pitch compressed twenty figures into a ribbon, an ophthalmologist drawn on
+  top of their own list, a card occluding the scene title, and an annotation label landing on the
+  pool it pointed at (replaced with the house card component). Registered in `tests/theatre-qa.mjs`
+  alongside 01 and 02.
+
 ## Roadmap (v2)
 
 Real MBS item lookups. The product is otherwise feature-complete for its purpose.
